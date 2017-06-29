@@ -6,7 +6,9 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,10 +18,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -34,7 +38,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Carro.findByModelo", query = "SELECT c FROM Carro c WHERE c.modelo = :modelo"),
     @NamedQuery(name = "Carro.findByImagem", query = "SELECT c FROM Carro c WHERE c.imagem = :imagem"),
     @NamedQuery(name = "Carro.findByDescricao", query = "SELECT c FROM Carro c WHERE c.descricao = :descricao"),
-    @NamedQuery(name = "Carro.findByValorAluguel", query = "SELECT c FROM Carro c WHERE c.valorAluguel = :valorAluguel")})
+    @NamedQuery(name = "Carro.findByValorAluguelDiaria", query = "SELECT c FROM Carro c WHERE c.valorAluguelDiaria = :valorAluguelDiaria")})
 public class Carro implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -54,17 +58,16 @@ public class Carro implements Serializable {
     @Column(name = "descricao")
     private String descricao;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "valorAluguel")
-    private Float valorAluguel;
+    @Column(name = "valorAluguelDiaria")
+    private Float valorAluguelDiaria;
     @JoinColumn(name = "idCategoria", referencedColumnName = "idCategoria")
     @ManyToOne(optional = false)
     private Categoria idCategoria;
     @JoinColumn(name = "idFabricante", referencedColumnName = "idFabricante")
     @ManyToOne(optional = false)
     private Fabricante idFabricante;
-    @JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario")
-    @ManyToOne
-    private Usuario idUsuario;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCarro")
+    private List<Aluguel> aluguelList;
 
     public Carro() {
     }
@@ -110,12 +113,12 @@ public class Carro implements Serializable {
         this.descricao = descricao;
     }
 
-    public Float getValorAluguel() {
-        return valorAluguel;
+    public Float getValorAluguelDiaria() {
+        return valorAluguelDiaria;
     }
 
-    public void setValorAluguel(Float valorAluguel) {
-        this.valorAluguel = valorAluguel;
+    public void setValorAluguelDiaria(Float valorAluguelDiaria) {
+        this.valorAluguelDiaria = valorAluguelDiaria;
     }
 
     public Categoria getIdCategoria() {
@@ -134,12 +137,13 @@ public class Carro implements Serializable {
         this.idFabricante = idFabricante;
     }
 
-    public Usuario getIdUsuario() {
-        return idUsuario;
+    @XmlTransient
+    public List<Aluguel> getAluguelList() {
+        return aluguelList;
     }
 
-    public void setIdUsuario(Usuario idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setAluguelList(List<Aluguel> aluguelList) {
+        this.aluguelList = aluguelList;
     }
 
     @Override

@@ -72,10 +72,10 @@ public class Usuario implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "celular")
     private String celular;
-    @OneToMany(mappedBy = "idUsuario")
-    private List<Carro> carroList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Cliente> clienteList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
+    private List<Aluguel> aluguelList;
     @JoinColumn(name = "idEndereco", referencedColumnName = "idEndereco")
     @ManyToOne(optional = false)
     private Endereco idEndereco;
@@ -147,21 +147,21 @@ public class Usuario implements Serializable {
     }
 
     @XmlTransient
-    public List<Carro> getCarroList() {
-        return carroList;
-    }
-
-    public void setCarroList(List<Carro> carroList) {
-        this.carroList = carroList;
-    }
-
-    @XmlTransient
     public List<Cliente> getClienteList() {
         return clienteList;
     }
 
     public void setClienteList(List<Cliente> clienteList) {
         this.clienteList = clienteList;
+    }
+
+    @XmlTransient
+    public List<Aluguel> getAluguelList() {
+        return aluguelList;
+    }
+
+    public void setAluguelList(List<Aluguel> aluguelList) {
+        this.aluguelList = aluguelList;
     }
 
     public Endereco getIdEndereco() {
