@@ -1,13 +1,15 @@
-
-#cabecalho{
+#cabecalho {
     position: relative;
-    background-color: #036fab;
+   // background-color: #036fab;
+    background-image: url("../imagensTemplate/cabecalho_fundo2.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
     color: white;
     padding: 5px;
     margin: 0px 0px 10px 0px;
 }
 
-#rodape{
+#rodape {
     position: relative;
     background-color: #c2dfef;
     padding: 5px;
@@ -17,10 +19,13 @@
 
 #menuLateral {
     float: left;
-    background-color: #ece3a5;
     padding: 5px;
-    margin-bottom: 10px;
+    background-image: url("../imagensTemplate/menuLateral_fundo3.jpg");
+    background-repeat: repeat-y;
+    background-size: 100%;
     width: 150px;
+    height: 600px;
+    margin-bottom: 10px;
 }
 
 #right {
@@ -60,4 +65,9 @@
   text-decoration : underline;
 }
 
-
+#img_logo
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto 
+}

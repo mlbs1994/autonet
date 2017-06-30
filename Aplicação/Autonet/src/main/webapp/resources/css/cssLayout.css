@@ -1,24 +1,31 @@
-
-#top {
+#cabecalho {
     position: relative;
-    background-color: #036fab;
+   // background-color: #036fab;
+    background-image: url("../imagensTemplate/cabecalho_fundo2.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
     color: white;
     padding: 5px;
     margin: 0px 0px 10px 0px;
 }
 
-#bottom {
+#rodape {
     position: relative;
     background-color: #c2dfef;
     padding: 5px;
     margin: 10px 0px 0px 0px;
+    clear: both;
 }
 
-#left {
+#menuLateral {
     float: left;
-    background-color: #ece3a5;
     padding: 5px;
+    background-image: url("../imagensTemplate/menuLateral_fundo3.jpg");
+    background-repeat: repeat-y;
+    background-size: 100%;
     width: 150px;
+    height: 600px;
+    margin-bottom: 10px;
 }
 
 #right {
@@ -46,16 +53,21 @@
     margin: 0px 170px 0px 170px;
 }
 
-#top a:link, #top a:visited {
+#cabecalho a:link, #cabecalho a:visited {
   color: white;
   font-weight : bold;
   text-decoration: none;
 }
 
-#top a:link:hover, #top a:visited:hover  {
+#cabecalho a:link:hover, #cabecalho a:visited:hover  {
   color: black;
   font-weight : bold;
   text-decoration : underline;
 }
 
-
+#img_logo
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto 
+}
