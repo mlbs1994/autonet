@@ -8,11 +8,12 @@
 
     <body>
 
-        <ui:composition template="./templates/templateAutonet2.xhtml">
+        <ui:composition template="./templates/templateAutonet3.xhtml">
+            
             <ui:define name="conteudo">
                 <div id="conteudoCliente">
                 <p:panel id="basic" header="Cadastro - Cliente" styleClass="customTitleBar" 
-                         style="margin-bottom:50px; width: 800px; height: 600px; display: block; 
+                         style="margin-bottom:50px; width: 800px; height: 560px; display: block; 
                          margin-left: auto;  margin-right: auto; margin-top: 50px; ">
                     <h:form >
                         <h:panelGrid columns="2" cellpadding="5"> 
@@ -58,6 +59,11 @@
                 </p:panel>
                 </div>    
             </ui:define>
+
+            <ui:define name="rodape">
+                Desenvolvido por Matheus Levi Barouh dos Santos e Saulo Chagas
+            </ui:define>
+
         </ui:composition>
 
     </body>

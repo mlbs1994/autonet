@@ -1,0 +1,30 @@
+#conteudo
+{
+    background-image: url("../imagensTemplate/cadastro_fundo.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 730px;
+    height: 730px;
+}
+
+
+
+#basic
+{
+   background-color: fff;
+   opacity: 0.90;
+}
+
+.ui-panel-title
+{
+    font-size: 20pt;
+}
+
+.labelFields
+{
+    font-size: 16pt;
+}
+
+.ui-inputfield 
+{
+    font-size:24pt;
+}

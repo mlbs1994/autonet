@@ -2,7 +2,8 @@
 {
     background-image: url("../imagensTemplate/login_cadastro_mclarenp1_fundo.jpg");
     background-repeat: no-repeat;
-    background-size: 100% 730px;
+    background-size: 100% 430px;
+    height: 430px;
 }
 
 #basic
