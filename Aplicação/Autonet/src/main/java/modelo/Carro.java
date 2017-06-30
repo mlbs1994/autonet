@@ -51,6 +51,28 @@ public class Carro implements Serializable {
     @Size(min = 1, max = 60)
     @Column(name = "modelo")
     private String modelo;
+    @Size(min = 1, max = 5)
+    @Column(name = "ano")
+    private String ano;
+    @Size(min = 1, max = 60)
+    @Column(name = "cor")
+    private String cor;
+
+    public String getAno() {
+        return ano;
+    }
+
+    public void setAno(String ano) {
+        this.ano = ano;
+    }
+
+    public String getCor() {
+        return cor;
+    }
+
+    public void setCor(String cor) {
+        this.cor = cor;
+    }
     @Size(max = 150)
     @Column(name = "imagem")
     private String imagem;
