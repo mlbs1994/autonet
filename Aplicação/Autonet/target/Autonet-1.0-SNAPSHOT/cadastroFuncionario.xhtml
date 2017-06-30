@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./templates/templateAutonet2.xhtml">
+
+            <ui:define name="conteudo">
+                <p:panel id="basic" header="Cadastro - Funcionário" styleClass="customTitleBar" 
+                         style="margin-bottom:50px; width: 800px; height: 600px; display: block; 
+                         margin-left: auto;  margin-right: auto; margin-top: 50px; ">
+                    <h:form >
+                        <h:panelGrid columns="2" cellpadding="5"> 
+                            <h:outputText class="labelFields" value="Nome: " />
+                            <p:inputText id="nomeField" />
+                            
+                            <h:outputText class="labelFields" value="Login: " />
+                            <p:inputText id="loginField" />
+                            
+                            <h:outputText class="labelFields" value="Senha: " />
+                            <p:password id="senhaField" value="#{passwordView.password2}" feedback="true" />
+                            
+                            <h:outputText class="labelFields" value="Confirme a senha: " />
+                            <p:password id="senhaFieldConfirm" value="#{passwordView.password2}" feedback="true" />
+                            
+                            <h:outputText class="labelFields" value="Telefone: " />
+                            <p:inputText id="telField" />
+                            
+                            <h:outputText class="labelFields" value="Celular: " />
+                            <p:inputText id="celField" />
+                            
+                            <h:outputText class="labelFields" value="Logradouro: " />
+                            <p:inputText id="logField" />
+                            
+                            <h:outputText class="labelFields" value="Número: " />
+                            <p:inputText id="numField" />
+                            
+                            <h:outputText class="labelFields" value="Complemento: " />
+                            <p:inputText id="compField" />
+                            
+                            <h:outputText class="labelFields" value="Bairro: " />
+                            <p:inputText id="bairroField" />
+                            
+                            <h:outputText class="labelFields" value="Cidade: " />
+                            <p:inputText id="cidadeField" />
+                            
+                            <h:outputText class="labelFields" value="Estado: " />
+                            <p:inputText id="estadoField" />
+                               
+                            <p:commandButton value="Entrar" id="btn_logar" actionListener="#{buttonView.buttonAction}" ajax="false" />
+                        </h:panelGrid>
+                    </h:form>    
+                </p:panel>
+            </ui:define>
+            
+        </ui:composition>
+
+    </body>
+</html>
