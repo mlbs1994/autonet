@@ -82,11 +82,28 @@
     display: block;
     margin-left: auto;
     margin-right: auto;     
-    height: 85px;    
+    height: 85px;
+    padding-left: 170px;
+    padding-right: 100px;
+
 }
+
+
 
 #categoria_menu_h1
 {
     color: #000000;
     text-align: center;
+}
+
+.flag
+{
+    width: 80px;
+    height: 50px;
+    padding: 5px;
+}
+
+.flag:first-of-type
+{
+    padding-left: 20px;
 }
