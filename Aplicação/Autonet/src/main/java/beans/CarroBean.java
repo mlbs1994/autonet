@@ -30,10 +30,5 @@ public class CarroBean
         this.carros = this.carroServico.getListaCarros();
         return this.carros;
     }
-    
-    public Carro getCarro()
-    {
-        return this.carroServico.getCarro(2);
-    }
  
 }

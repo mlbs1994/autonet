@@ -18,7 +18,7 @@ public interface CarroDAO
 {
     public void cadastrarCarro(Carro a); //CREATE
     
-    public Carro getCarro(Integer id); //READ
+    public Carro getCarro(Long id); //READ
     
     public void atualizarCarro(Carro a); //UPDATE
     
