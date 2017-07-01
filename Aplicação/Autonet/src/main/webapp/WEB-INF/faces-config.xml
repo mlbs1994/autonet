@@ -8,4 +8,9 @@
         <managed-bean-class>beans.CarroBean</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>categoriaBean</managed-bean-name>
+        <managed-bean-class>beans.CategoriaBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
 </faces-config>

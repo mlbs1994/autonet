@@ -23,14 +23,10 @@
                 <ui:insert name="menuLateral">
                     <h1 id="categoria_menu_h1">CATEGORIAS</h1>
                     <ul>
-                        <li>Item</li>
-                        <li>Item</li>
-                        <li>Item</li>
-                        <li>Item</li>
-                        <li>Item</li>
-                        <li>Item</li>
-                        <li>Item</li>
-                    </ul>
+                    <ui:repeat value="#{ctgBean.categorias}" var="categoria">
+                        <li><h:link value="#{categoria.nome}" outcome="login.xhtml"></h:link></li>
+                    </ui:repeat>
+                    </ul>    
                 </ui:insert>
             </div>
             <div id="conteudo" class="left_content">
