@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./template/templateAutonet.xhtml">
+            
+            <ui:define name="conteudo">
+                <div style="height: 100px; padding:0px; background-color: #550000; text-align: center;
+                     font-size: 30pt; font-weight: bold; font-family: Tahoma; color:#fff; padding-top: 20px;">
+                       #{carroBean.carro.idFabricante.nome} #{carroBean.carro.modelo}
+                </div>
+                <h:form style="padding: 0px;">
+                    <p:panel id="basic" styleClass="customTitleBar" 
+                         style=" display: block; margin-left: auto;  margin-right: auto; padding: 0px; ">
+                        <div style="height: 1371px;">
+                            <h:panelGrid columns="2" cellpadding="10">
+                                <p:graphicImage style="display: block; margin-left: auto;  margin-right: auto;
+                                                height: 350px; width: 500px;" name="gol_vermelho.jpg" />
+                                <p:outputPanel>
+                                    <h:panelGrid columns="2" cellpadding="3">
+                                        <h:outputText value="Fabricante:" />
+                                        <h:outputText value="#{carroBean.carro.idFabricante.nome}" style="font-weight: bold"/>
+
+                                        <h:outputText value="Modelo:" />
+                                        <h:outputText value="#{carroBean.carro.modelo}" style="font-weight: bold"/>
+
+                                        <h:outputText value="Ano:" />
+                                        <h:outputText value="#{carroBean.carro.ano}" style="font-weight: bold"/>
+
+                                        <h:outputText value="Cor:" />
+                                        <h:outputText value="#{carroBean.carro.cor}" style="font-weight: bold"/>
+                                        
+                                        <h:outputText value="Cor:" />
+                                        <h:outputText value="#{carroBean.carro.cor}" style="font-weight: bold"/>
+                                        
+                                        <h:outputText value="Descrição:" />
+                                        <h:outputText value="#{carroBean.carro.descricao}" style="font-weight: bold"/>
+                                    </h:panelGrid>
+                                </p:outputPanel>
+                                
+                                <h:panelGrid columns="2"> 
+                                
+                                <h:outputText style="width: 100px;" class="labelFields" value="Data do aluguel: " />
+                                <p:inputText id="dataAluguelField" />
+
+                                <h:outputText class="labelFields" value="Prazo de entrega: " />
+                                <p:inputText id="dataEntregaField" />
+                                
+                                <h:outputText class="labelFields" value="Valor Diária: " />
+                                <h:outputText  value="#{carroBean.carro.valorAluguelDiaria}" />
+                                
+                                <h:outputText class="labelFields" value="Valor Total: " />
+                                <h:outputText value="#{carroBean.carro.valorAluguelDiaria}" />
+                                
+                                </h:panelGrid>
+                                
+                                <h:outputText></h:outputText>
+                                
+                                <div style="height: 80px; width: 100%; background-color: #000044; 
+                                     color: #fff;  text-align: center; font-size: 30pt; 
+                                     font-weight: bold; font-family: Tahoma; color:#fff;
+                                     padding-top: 20px;" >
+                                    ALUGAR
+                                </div>
+                            </h:panelGrid>
+                        </div>
+                    </p:panel>    
+                </h:form>    
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

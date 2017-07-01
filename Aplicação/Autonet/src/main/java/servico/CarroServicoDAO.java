@@ -57,7 +57,7 @@ public class CarroServicoDAO implements CarroDAO
     }
 
     @Override
-    public Carro getCarro(Long id)
+    public Carro getCarro(Integer id)
     {
         return em.find(Carro.class, id);
     }
