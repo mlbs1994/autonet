@@ -18,42 +18,70 @@
                     <h:form >
                         <h:panelGrid columns="2" cellpadding="5"> 
                             <h:outputText class="labelFields" value="Nome: " />
-                            <p:inputText id="nomeField" />
+                            <p:inputText id="nomeField" size="60" value="#{funcBean.nome}"/>
                             
                             <h:outputText class="labelFields" value="Login: " />
-                            <p:inputText id="loginField" />
+                            <p:inputText id="loginField" value="#{funcBean.login}" />
                             
                             <h:outputText class="labelFields" value="Senha: " />
-                            <p:password id="senhaField" value="#{passwordView.password2}" feedback="true" />
+                            <p:password id="senhaField" value="#{funcBean.senha}" feedback="true" />
                             
                             <h:outputText class="labelFields" value="Confirme a senha: " />
-                            <p:password id="senhaFieldConfirm" value="#{passwordView.password2}" feedback="true" />
+                            <p:password id="senhaFieldConfirm"  feedback="true" />
                             
                             <h:outputText class="labelFields" value="Telefone: " />
-                            <p:inputText id="telField" />
+                            <p:inputText id="telField" size="16" value="#{funcBean.telefone}" />
                             
                             <h:outputText class="labelFields" value="Celular: " />
-                            <p:inputText id="celField" />
+                            <p:inputText id="celField" size="16" value="#{funcBean.celular}"/>
                             
                             <h:outputText class="labelFields" value="Logradouro: " />
-                            <p:inputText id="logField" />
+                            <p:inputText id="logField" size="60" value="#{funcBean.logradouro}"/>
                             
                             <h:outputText class="labelFields" value="Número: " />
-                            <p:inputText id="numField" />
+                            <p:inputText id="numField" size="10" value="#{funcBean.numero}"/>
                             
                             <h:outputText class="labelFields" value="Complemento: " />
-                            <p:inputText id="compField" />
+                            <p:inputText id="compField" size="15" value="#{funcBean.complemento}"/>
                             
                             <h:outputText class="labelFields" value="Bairro: " />
-                            <p:inputText id="bairroField" />
+                            <p:inputText id="bairroField" size="30" value="#{funcBean.bairro}" />
                             
                             <h:outputText class="labelFields" value="Cidade: " />
-                            <p:inputText id="cidadeField" />
+                            <p:inputText id="cidadeField" value="#{funcBean.cidade}"/>
                             
                             <h:outputText class="labelFields" value="Estado: " />
-                            <p:inputText id="estadoField" />
+                            <p:selectOneMenu id="estadoField" value="#{funcBean.estado}" style="width:85px">
+                                <f:selectItem itemLabel="AC" itemValue="Acre" />
+                                <f:selectItem itemLabel="AL" itemValue="Alagoas" />
+                                <f:selectItem itemLabel="AP" itemValue="Amapá" />
+                                <f:selectItem itemLabel="AM" itemValue="Amazonas" />
+                                <f:selectItem itemLabel="BA" itemValue="Bahia" />
+                                <f:selectItem itemLabel="CE" itemValue="Ceará" />
+                                <f:selectItem itemLabel="DF" itemValue="Distrito Federal" />
+                                <f:selectItem itemLabel="ES" itemValue="Espirito Santo" />
+                                <f:selectItem itemLabel="GO" itemValue="Goiás"/>
+                                <f:selectItem itemLabel="MA" itemValue="Maranhão" />
+                                <f:selectItem itemLabel="MT" itemValue="Mato Grosso" />
+                                <f:selectItem itemLabel="MS" itemValue="Mato Grosso do Sul" />
+                                <f:selectItem itemLabel="MG" itemValue="Minas Gerais" />
+                                <f:selectItem itemLabel="PA" itemValue="Pará" />
+                                <f:selectItem itemLabel="PB" itemValue="Paraíba" />
+                                <f:selectItem itemLabel="PR" itemValue="Paraná" />
+                                <f:selectItem itemLabel="PE" itemValue="Pernambuco" />
+                                <f:selectItem itemLabel="PI" itemValue="Piauí" />
+                                <f:selectItem itemLabel="RJ" itemValue="Rio de Janeiro" />
+                                <f:selectItem itemLabel="RN" itemValue="Rio Grande do Norte" />
+                                <f:selectItem itemLabel="RS" itemValue="Rio Grande do Sul" />
+                                <f:selectItem itemLabel="RO" itemValue="Rondonia" />
+                                <f:selectItem itemLabel="RR" itemValue="Roraima" />
+                                <f:selectItem itemLabel="SC" itemValue="Santa Catarina" />
+                                <f:selectItem itemLabel="SP" itemValue="São Paulo" />
+                                <f:selectItem itemLabel="SE" itemValue="Sergipe" />
+                                <f:selectItem itemLabel="TO" itemValue="Tocantins" />
+                            </p:selectOneMenu>
                                
-                            <p:commandButton value="Entrar" id="btn_logar" actionListener="#{buttonView.buttonAction}" ajax="false" />
+                            <p:commandButton value="Cadastrar" id="btn_logar" actionListener="#{funcBean.cadastrarFuncionario()}" ajax="false" style="width: 100px; height: 30px; background-color: red; color:#fff"/>
                         </h:panelGrid>
                     </h:form>    
                 </p:panel>

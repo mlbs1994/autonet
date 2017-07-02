@@ -22,10 +22,10 @@
                     <h:form >
                         <h:panelGrid columns="2" cellpadding="5">    
                                 <h:outputText class="labelFields" value="Login: " />
-                                <p:inputText id="loginField" />
+                                <p:inputText id="loginField" value="#{loginBean.login}"/>
                                 <h:outputText class="labelFields" value="Senha: " />
-                                <p:password id="feedback" value="#{passwordView.password2}" feedback="true" />
-                                <p:commandButton value="Entrar" id="nonAjax" actionListener="#{buttonView.buttonAction}" ajax="false" styleClass="ui-priority-primary"  />
+                                <p:password id="feedback" value="#{loginBean.senha}" feedback="true" />
+                                <p:commandButton value="Entrar" action="#{loginBean.autenticarUsuario()}"  />
                         </h:panelGrid>
                     </h:form>    
                 </p:panel>    

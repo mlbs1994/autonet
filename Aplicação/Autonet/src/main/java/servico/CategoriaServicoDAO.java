@@ -26,9 +26,9 @@ public class CategoriaServicoDAO implements CategoriaDAO {
     
     public CategoriaServicoDAO()
     {
-         try
+        try
         {
-            System.out.println("Iniciando CarroServicoDAO");
+            System.out.println("Iniciando UsuarioServicoDAO");
             this.emf = Persistence.createEntityManagerFactory("com.mycompany_Autonet_war_1.0-SNAPSHOTPU");
             System.out.println("Criado o entity manager factory");
             this.em = emf.createEntityManager();

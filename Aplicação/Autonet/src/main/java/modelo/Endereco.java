@@ -47,9 +47,9 @@ public class Endereco implements Serializable {
     @Column(name = "idEndereco")
     private Integer idEndereco;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 100)
-    @Column(name = "logradouro")
+    @NotNull
+    @Column(name = "logradouro", nullable=false)
     private String logradouro;
     @Basic(optional = false)
     @NotNull

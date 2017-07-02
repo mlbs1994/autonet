@@ -2,8 +2,8 @@
 {
     background-image: url("../imagensTemplate/cadastro_fundo.jpg");
     background-repeat: no-repeat;
-    background-size: 100% 730px;
-    height: 730px;
+    background-size: 100% 780px;
+    height: 780px;
 }
 
 
@@ -16,15 +16,15 @@
 
 .ui-panel-title
 {
-    font-size: 20pt;
+    font-size: 15pt;
 }
 
 .labelFields
 {
-    font-size: 16pt;
+    font-size: 15pt;
 }
 
 .ui-inputfield 
 {
-    font-size:24pt;
+    font-size:15pt;
 }

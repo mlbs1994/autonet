@@ -29,7 +29,7 @@ public class CarroServicoDAO implements CarroDAO
     
     public CarroServicoDAO()
     {
-         try
+        try
         {
             System.out.println("Iniciando CarroServicoDAO");
             this.emf = Persistence.createEntityManagerFactory("com.mycompany_Autonet_war_1.0-SNAPSHOTPU");
@@ -57,7 +57,7 @@ public class CarroServicoDAO implements CarroDAO
     }
 
     @Override
-    public Carro getCarro(Long id)
+    public Carro getCarro(Integer id)
     {
         return em.find(Carro.class, id);
     }

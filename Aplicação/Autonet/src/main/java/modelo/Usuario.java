@@ -77,7 +77,7 @@ public class Usuario implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Aluguel> aluguelList;
     @JoinColumn(name = "idEndereco", referencedColumnName = "idEndereco")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade=CascadeType.PERSIST)
     private Endereco idEndereco;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Funcionario> funcionarioList;

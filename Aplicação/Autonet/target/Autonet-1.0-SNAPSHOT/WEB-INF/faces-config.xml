@@ -3,20 +3,6 @@
               xmlns="http://xmlns.jcp.org/xml/ns/javaee"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
-    
-    <application>
-        <locale-config>
-            <default-locale>pt_BR</default-locale>
-            <supported-locale>en_US</supported-locale>
-            <supported-locale>pt_BR</supported-locale>
-        </locale-config>
-        
-        <resource-bundle>
-            <base-name>extras.messages</base-name>
-            <var>msgs</var>
-        </resource-bundle>
-    </application>
-    
     <managed-bean>
         <managed-bean-name>carroBean</managed-bean-name>
         <managed-bean-class>beans.CarroBean</managed-bean-class>
@@ -25,6 +11,36 @@
     <managed-bean>
         <managed-bean-name>categoriaBean</managed-bean-name>
         <managed-bean-class>beans.CategoriaBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>bandeiraBean</managed-bean-name>
+        <managed-bean-class>beans.BandeiraBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>clienteBean</managed-bean-name>
+        <managed-bean-class>beans.ClienteBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>funcionarioBean</managed-bean-name>
+        <managed-bean-class>beans.FuncionarioBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>funcionarioBean1</managed-bean-name>
+        <managed-bean-class>beans.FuncionarioBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>loginBean</managed-bean-name>
+        <managed-bean-class>beans.LoginBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>logoutBean</managed-bean-name>
+        <managed-bean-class>beans.LogoutBean</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
 </faces-config>

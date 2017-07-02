@@ -13,47 +13,87 @@
             <ui:define name="conteudo">
                 <div id="conteudoCliente">
                 <p:panel id="basic" header="Cadastro - Cliente" styleClass="customTitleBar" 
-                         style="margin-bottom:50px; width: 800px; height: 560px; display: block; 
+                         style="margin-bottom:50px; width: 800px; height: 690px; display: block; 
                          margin-left: auto;  margin-right: auto; margin-top: 50px; ">
                     <h:form >
                         <h:panelGrid columns="2" cellpadding="5"> 
                             <h:outputText class="labelFields" value="Nome: " />
-                            <p:inputText id="nomeField" />
+                            <p:inputText id="nomeField" size="60" value="#{clienteBean.nome}"/>
                             
                             <h:outputText class="labelFields" value="Login: " />
-                            <p:inputText id="loginField" />
+                            <p:inputText id="loginField" value="#{clienteBean.login}"/>
                             
                             <h:outputText class="labelFields" value="Senha: " />
-                            <p:password id="senhaField" value="#{passwordView.password2}" feedback="true" />
+                            <p:password id="senhaField" value="#{clienteBean.senha}" feedback="true" />
                             
                             <h:outputText class="labelFields" value="Confirme a senha: " />
-                            <p:password id="senhaFieldConfirm" value="#{passwordView.password2}" feedback="true" />
+                            <p:password id="senhaFieldConfirm"  feedback="true" />
                             
-                            <h:outputText class="labelFields" value="Telefone: " />
-                            <p:inputText id="telField" />
+                            <h:outputText class="labelFields" value="Telefone: "  />
+                            <p:inputText id="telField" size="16" value="#{clienteBean.telefone}"/>
                             
                             <h:outputText class="labelFields" value="Celular: " />
-                            <p:inputText id="celField" />
+                            <p:inputText id="celField" size="16" value="#{clienteBean.celular}"/>
                             
                             <h:outputText class="labelFields" value="Logradouro: " />
-                            <p:inputText id="logField" />
+                            <p:inputText id="logField" size="60" value="#{clienteBean.logradouro}"/>
                             
                             <h:outputText class="labelFields" value="Número: " />
-                            <p:inputText id="numField" />
+                            <p:inputText id="numField" size="10" value="#{clienteBean.numero}"/>
                             
                             <h:outputText class="labelFields" value="Complemento: " />
-                            <p:inputText id="compField" />
+                            <p:inputText id="compField" size="15" value="#{clienteBean.complemento}"/>
                             
                             <h:outputText class="labelFields" value="Bairro: " />
-                            <p:inputText id="bairroField" />
+                            <p:inputText id="bairroField" size="30" value="#{clienteBean.bairro}"/>
                             
                             <h:outputText class="labelFields" value="Cidade: " />
-                            <p:inputText id="cidadeField" />
+                            <p:inputText id="cidadeField" value="#{clienteBean.cidade}"/>
                             
                             <h:outputText class="labelFields" value="Estado: " />
-                            <p:inputText id="estadoField" />
+                            <p:selectOneMenu id="estadoField" value="#{clienteBean.estado}" style="width:85px">
+                                <f:selectItem itemLabel="AC" itemValue="Acre" />
+                                <f:selectItem itemLabel="AL" itemValue="Alagoas" />
+                                <f:selectItem itemLabel="AP" itemValue="Amapá" />
+                                <f:selectItem itemLabel="AM" itemValue="Amazonas" />
+                                <f:selectItem itemLabel="BA" itemValue="Bahia" />
+                                <f:selectItem itemLabel="CE" itemValue="Ceará" />
+                                <f:selectItem itemLabel="DF" itemValue="Distrito Federal" />
+                                <f:selectItem itemLabel="ES" itemValue="Espirito Santo" />
+                                <f:selectItem itemLabel="GO" itemValue="Goiás"/>
+                                <f:selectItem itemLabel="MA" itemValue="Maranhão" />
+                                <f:selectItem itemLabel="MT" itemValue="Mato Grosso" />
+                                <f:selectItem itemLabel="MS" itemValue="Mato Grosso do Sul" />
+                                <f:selectItem itemLabel="MG" itemValue="Minas Gerais" />
+                                <f:selectItem itemLabel="PA" itemValue="Pará" />
+                                <f:selectItem itemLabel="PB" itemValue="Paraíba" />
+                                <f:selectItem itemLabel="PR" itemValue="Paraná" />
+                                <f:selectItem itemLabel="PE" itemValue="Pernambuco" />
+                                <f:selectItem itemLabel="PI" itemValue="Piauí" />
+                                <f:selectItem itemLabel="RJ" itemValue="Rio de Janeiro" />
+                                <f:selectItem itemLabel="RN" itemValue="Rio Grande do Norte" />
+                                <f:selectItem itemLabel="RS" itemValue="Rio Grande do Sul" />
+                                <f:selectItem itemLabel="RO" itemValue="Rondonia" />
+                                <f:selectItem itemLabel="RR" itemValue="Roraima" />
+                                <f:selectItem itemLabel="SC" itemValue="Santa Catarina" />
+                                <f:selectItem itemLabel="SP" itemValue="São Paulo" />
+                                <f:selectItem itemLabel="SE" itemValue="Sergipe" />
+                                <f:selectItem itemLabel="TO" itemValue="Tocantins" />
+                            </p:selectOneMenu>
+                            
+                            <h:outputText class="labelFields" value="Bandeira do cartão: " />
+                            <p:selectOneMenu id="bandeiraField" value="#{clienteBean.bandeira}">
+                                <f:selectItem itemLabel="Selecione a bandeira do cartão" itemValue="" />;
+                                <f:selectItems value="#{bandeiraBean.bandeiras}" var="bandeira" itemLabel="#{bandeira.nome}" itemValue="#{bandeira.idBandeira}" />;  
+                            </p:selectOneMenu> 
+                            
+                            <h:outputText class="labelFields" value="Número do cartão: " />
+                            <p:inputText id="numeroCartaoField" value="#{clienteBean.numeroCartao}"/>
+                            
+                            <h:outputText class="labelFields" value="Código de segurança do cartão: " />
+                            <p:inputText id="codSegField" value="#{clienteBean.codigoSeguranca}" />
                                
-                            <p:commandButton value="Entrar" id="btn_logar" actionListener="#{buttonView.buttonAction}" ajax="false" />
+                            <p:commandButton value="Cadastrar" id="btn_logar" actionListener="#{clienteBean.cadastrarCliente()}" ajax="false" style="width: 100px; height: 30px; background-color: red; color:#fff"/>
                         </h:panelGrid>
                     </h:form>    
                 </p:panel>
