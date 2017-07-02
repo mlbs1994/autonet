@@ -30,6 +30,14 @@ public class CategoriaBean {
         this.categorias = new ArrayList();
         this.categoriaServico = new CategoriaServicoDAO();
     }
+
+    public Categoria getC() {
+        return c;
+    }
+
+    public void setC(Categoria c) {
+        this.c = c;
+    }
     
      public List<Categoria> getCategorias() {
         this.categorias = this.categoriaServico.getListaCategorias();

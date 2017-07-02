@@ -43,4 +43,9 @@
         <managed-bean-class>beans.LogoutBean</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>fabricanteBean</managed-bean-name>
+        <managed-bean-class>beans.FabricanteBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
 </faces-config>

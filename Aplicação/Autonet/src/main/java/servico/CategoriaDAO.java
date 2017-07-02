@@ -18,7 +18,7 @@ public interface CategoriaDAO
 {
     public void cadastrarCategoria(Categoria a); //CREATE
     
-    public Categoria getCategoria(Long id); //READ
+    public Categoria getCategoria(Integer id); //READ
     
     public void atualizarCategoria(Categoria a); //UPDATE
     

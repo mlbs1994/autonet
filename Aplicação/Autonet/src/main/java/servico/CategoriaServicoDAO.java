@@ -53,7 +53,7 @@ public class CategoriaServicoDAO implements CategoriaDAO {
     }
 
     @Override
-    public Categoria getCategoria(Long id) {
+    public Categoria getCategoria(Integer id) {
        return this.em.find(Categoria.class, id);
     }
 

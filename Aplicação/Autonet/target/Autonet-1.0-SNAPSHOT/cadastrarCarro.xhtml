@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <body>
+
+        <ui:composition template="./templates/templateAutonet.xhtml">
+
+            <ui:define name="menuLateral">
+                    <h1 id="categoria_menu_h1">CATEGORIAS</h1>
+                    <ul>
+                        <li><h:link value="Carros" outcome="cadastrarCarro.xhtml"></h:link></li>
+                        <li><h:link value="Fabricantes" outcome="cadastrarCarro.xhtml"></h:link></li>
+                    </ul>    
+            </ui:define>
+
+            <ui:define name="conteudo">
+                <div style="height: 100px; padding:0px; background-color: #550000; text-align: center;
+                     font-size: 30pt; font-weight: bold; font-family: Tahoma; color:#fff; padding-top: 20px;">
+                       CADASTRAR CARRO
+                </div>
+                <h:form style="padding: 0px;">
+                    <p:panel id="basic" styleClass="customTitleBar" 
+                         style=" display: block; margin-left: auto;  margin-right: auto; padding: 0px; ">
+                        <h:panelGrid columns="2"> 
+
+                            <h:outputText class="labelFields" value="Categoria: " />
+                            <p:selectOneMenu id="categoriaField" value="#{carroBean.categoria}">
+                                <f:selectItem itemLabel="Selecione a categoria do veículo" itemValue="" />;
+                                <f:selectItems value="#{ctgBean.categorias}" var="categoria" itemLabel="#{categoria.nome}" itemValue="#{categoria.idCategoria}" />;  
+                            </p:selectOneMenu>
+                            
+                            <h:outputText class="labelFields" value="Fabricante: " />
+                            <p:selectOneMenu id="fabricanteField" value="#{carroBean.fabricante}">
+                                <f:selectItem itemLabel="Selecione o fabricante do veículo" itemValue="" />;
+                                <f:selectItems value="#{fabricanteBean.listaFabricantes}" var="fabricante" itemLabel="#{fabricante.nome}" itemValue="#{fabricante.idFabricante}" />;  
+                            </p:selectOneMenu>
+                            
+                            <h:outputText style="width: 100px;" class="labelFields" value="Modelo: " />
+                            <p:inputText id="modeloField" size="40" value="#{carroBean.modelo}"/>
+
+                            <h:outputText class="labelFields" value="Cor: " />
+                            <p:inputText id="corField" value="#{carroBean.cor}"/>
+
+                            <h:outputText class="labelFields" value="Ano: " />
+                            <p:inputText id="anoField" size="5" value="#{carroBean.ano}"/>
+
+                            <h:outputText class="labelFields" value="Imagem: " />
+                            <h:panelGrid columns="2"> 
+                                <p:fileUpload id="imagemField" fileUploadListener="#{carroBean.uploadAction}" update="messages" 
+                                              label="Selecione uma foto do carro" auto="true" sizeLimit="10000000" 
+                                              allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/" mode="advanced" />
+                                <p:growl id="messages" showDetail="true"/>
+                            </h:panelGrid>
+                            
+                            <h:outputText class="labelFields" value="Descrição: " />
+                            <p:inputTextarea id="descricaoField" rows="6" cols="33" value="#{carroBean.descricao}" />
+                            
+                            <h:outputText class="labelFields" value="Valor Aluguel (Diária): " />
+                            <p:inputText id="valorAluguelField" value="#{carroBean.valorAluguelDiaria}" />
+                            
+                                
+                            <h:commandLink action="#{carroBean.cadastrarCarro()}">
+                                <div style="height: 80px; width: 200%; background-color: #000044; 
+                                    color: #fff;  text-align: center; font-size: 30pt; 
+                                    font-weight: bold; font-family: Tahoma; color:#fff;
+                                    padding-top: 20px; margin-top: 20px; margin-right: 20px;" >
+                                    CADASTRAR 
+                                </div>
+                            </h:commandLink>    
+                            
+                        </h:panelGrid>
+
+                    </p:panel>          
+                </h:form>   
+            </ui:define>
+
+
+        </ui:composition>
+
+    </body>
+</html>
