@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import modelo.Carro;
+import modelo.Categoria;
 import modelo.Fabricante;
 import org.primefaces.event.FileUploadEvent;
 import servico.CarroServicoDAO;
@@ -13,13 +15,14 @@ import servico.CategoriaServicoDAO;
 import servico.FabricanteServicoDAO;
  
 @ManagedBean(name = "carroBean")
-@ViewScoped
+@SessionScoped
 public class CarroBean
 {
      
     private Carro c;
     private List<Carro> carros;
     private CarroServicoDAO carroServico;
+    private CategoriaServicoDAO categoriaServico;
     
     private String modelo;
     private String cor;
@@ -29,6 +32,20 @@ public class CarroBean
     private float valorAluguelDiaria;
     private int fabricante;
     private int categoria;
+    
+    private int categoriaSelecionada;
+
+    public int getCategoriaSelecionada() {
+        return categoriaSelecionada;
+    }
+
+    public void setCategoriaSelecionada(int categoriaSelecionada) {
+        this.categoriaSelecionada = categoriaSelecionada;
+    }
+    
+    public void updateCategoriaSelecionada() {
+        this.categoriaSelecionada++;
+    }
 
     public Carro getC() {
         return c;
@@ -107,11 +124,22 @@ public class CarroBean
         this.c = new Carro();
         this.carros = new ArrayList();
         this.carroServico = new CarroServicoDAO();
+        this.categoriaServico = new CategoriaServicoDAO();
         this.carros = this.carroServico.getListaCarros();
     }
      
-    public List<Carro> getCarros() {
-        this.carros = this.carroServico.getListaCarros();
+    public List<Carro> getCarros() 
+    {
+        if(this.categoriaSelecionada==0)
+        {
+            this.carros = this.carroServico.getListaCarros();
+        }
+        else
+        {
+            Categoria c = this.categoriaServico.getCategoria(this.getCategoriaSelecionada());
+            this.carros = this.carroServico.getListaCarrosCategoria(c);
+        }
+        
         return this.carros;
     }
     
@@ -149,6 +177,7 @@ public class CarroBean
             e.printStackTrace();
         }
     }
+
     
  
 }

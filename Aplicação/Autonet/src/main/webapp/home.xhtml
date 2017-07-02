@@ -11,8 +11,8 @@
         <ui:composition template="./template/templateAutonet.xhtml">
 
             <ui:define name="conteudo">
-                <h:form> 
-                    <p:dataScroller value="#{carroBean.carros}" var="carro" chunkSize="10">
+                <h:form id="formCarros"> 
+                    <p:dataScroller id="listaCarros" value="#{carroBean.carros}" var="carro" chunkSize="10">
                         <f:facet name="header">
                             CARROS 
                         </f:facet>
