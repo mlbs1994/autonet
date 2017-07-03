@@ -50,9 +50,12 @@ public class Aluguel implements Serializable {
     private Date dataAluguel;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "dataDevolu\u00e7\u00e3o")
-    private String dataDevolução;
+    @Temporal(TemporalType.DATE)
+    private Date dataDevolução;
+    @NotNull
+    @Column(name = "totalAluguel")
+    private float totalAluguel;
     @JoinColumn(name = "idCarro", referencedColumnName = "idCarro")
     @ManyToOne(optional = false)
     private Carro idCarro;
@@ -67,7 +70,7 @@ public class Aluguel implements Serializable {
         this.idAluguel = idAluguel;
     }
 
-    public Aluguel(Integer idAluguel, Date dataAluguel, String dataDevolução) {
+    public Aluguel(Integer idAluguel, Date dataAluguel, Date dataDevolução) {
         this.idAluguel = idAluguel;
         this.dataAluguel = dataAluguel;
         this.dataDevolução = dataDevolução;
@@ -86,14 +89,16 @@ public class Aluguel implements Serializable {
     }
 
     public void setDataAluguel(Date dataAluguel) {
+        System.out.println("setando data de aluguel = "+dataAluguel);
         this.dataAluguel = dataAluguel;
     }
 
-    public String getDataDevolução() {
+    public Date getDataDevolução() {
         return dataDevolução;
     }
 
-    public void setDataDevolução(String dataDevolução) {
+    public void setDataDevolução(Date dataDevolução) {
+        System.out.println("setando data de devolução = "+dataDevolução);
         this.dataDevolução = dataDevolução;
     }
 
@@ -102,6 +107,7 @@ public class Aluguel implements Serializable {
     }
 
     public void setIdCarro(Carro idCarro) {
+        System.out.println("setando carro = "+idCarro.getModelo());
         this.idCarro = idCarro;
     }
 
@@ -110,7 +116,17 @@ public class Aluguel implements Serializable {
     }
 
     public void setIdUsuario(Usuario idUsuario) {
+         System.out.println("setando idUsuario = "+idUsuario.getNome());
         this.idUsuario = idUsuario;
+    }
+    
+    public float getTotalAluguel() {
+        return totalAluguel;
+    }
+
+    public void setTotalAluguel(float totalAluguel) {
+         System.out.println("setando total aluguel = "+totalAluguel);
+        this.totalAluguel = totalAluguel;
     }
 
     @Override

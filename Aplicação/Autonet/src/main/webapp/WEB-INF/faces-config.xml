@@ -48,4 +48,17 @@
         <managed-bean-class>beans.FabricanteBean</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>aluguelBean</managed-bean-name>
+        <managed-bean-class>beans.AluguelBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>cBean</property-name>
+            <value>#{carroBean}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>uBean</property-name>
+            <value>#{loginBean}</value>
+        </managed-property>
+    </managed-bean>
 </faces-config>

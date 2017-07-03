@@ -59,7 +59,9 @@ public class CarroServicoDAO implements CarroDAO
     @Override
     public Carro getCarro(Integer id)
     {
-        return em.find(Carro.class, id);
+        Carro c = em.find(Carro.class, id);
+        System.out.println("obtendo carro = "+c.getModelo());
+        return c;
     }
 
     @Override

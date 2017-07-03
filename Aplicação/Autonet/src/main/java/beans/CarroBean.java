@@ -1,7 +1,10 @@
 package beans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -9,6 +12,8 @@ import javax.faces.bean.ViewScoped;
 import modelo.Carro;
 import modelo.Categoria;
 import modelo.Fabricante;
+import org.joda.time.DateTime;
+import org.joda.time.Days;
 import org.primefaces.event.FileUploadEvent;
 import servico.CarroServicoDAO;
 import servico.CategoriaServicoDAO;
@@ -16,7 +21,7 @@ import servico.FabricanteServicoDAO;
  
 @ManagedBean(name = "carroBean")
 @SessionScoped
-public class CarroBean
+public class CarroBean implements Serializable
 {
      
     private Carro c;
@@ -32,10 +37,31 @@ public class CarroBean
     private float valorAluguelDiaria;
     private int fabricante;
     private int categoria;
+    private float valorTotal;
     
     private int categoriaSelecionada;
     private int carroSelecionado;
+    
+    @ManagedProperty(value="#{aluguelBean}")
+    private AluguelBean aluguelBean;
 
+    public AluguelBean getAluguelBean() {
+        return aluguelBean;
+    }
+
+    public void setAluguelBean(AluguelBean aluguelBean) {
+        this.aluguelBean = aluguelBean;
+    }
+    
+   
+    public float getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(float valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+    
     public int getCarroSelecionado() {
         return carroSelecionado;
     }
@@ -157,6 +183,11 @@ public class CarroBean
         return this.carroServico.getCarro(this.carroSelecionado);
     }
     
+    public float getCarroValorDiaria()
+    {
+        return this.carroServico.getCarro(this.carroSelecionado).getValorAluguelDiaria();
+    }
+    
     public void uploadAction(FileUploadEvent event)
     {
         this.imagem = event.getFile().getFileName();
@@ -192,6 +223,7 @@ public class CarroBean
         this.carroSelecionado = idCarro;
         return "detalheCarro.xhtml";
     }
+    
 
     
  

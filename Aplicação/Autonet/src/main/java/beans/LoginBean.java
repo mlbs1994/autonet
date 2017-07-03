@@ -5,6 +5,7 @@
  */
 package beans;
 
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import modelo.Usuario;
@@ -12,12 +13,13 @@ import servico.UsuarioServicoDAO;
 
 @ManagedBean(name="loginBean")
 @SessionScoped
-public class LoginBean {
+public class LoginBean implements Serializable {
 
     private String login;
     private String senha;
     private String nome;
-    
+    private int idUsuario;
+
     private UsuarioServicoDAO usuarioServico;
     
     public LoginBean()
@@ -49,6 +51,16 @@ public class LoginBean {
         this.nome = nome;
     }
     
+    public int getIdUsuario() {
+        System.out.println("Usuario = "+this.idUsuario);
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+    
+    
     public String autenticarUsuario()
     {
         Usuario usr = this.usuarioServico.autenticarUsuario(login, senha);
@@ -57,6 +69,7 @@ public class LoginBean {
         {
             String[] nomes = usr.getNome().split(" ");
             this.nome = nomes[0];
+            this.idUsuario = usr.getIdUsuario();
             System.out.println("Sucesso");
             return "home.xhtml";
         }
@@ -66,8 +79,6 @@ public class LoginBean {
             return null;
         }
     }
-    
-    
     
     
 }

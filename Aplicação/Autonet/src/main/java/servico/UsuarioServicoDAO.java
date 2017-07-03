@@ -61,7 +61,10 @@ public class UsuarioServicoDAO implements UsuarioDAO
     @Override
     public Usuario getUsuario(Integer id)
     {
-        return this.em.find(Usuario.class, id);
+        System.out.println("obtendo o usuario id = "+id);
+        Usuario u = this.em.find(Usuario.class, id);
+        System.out.println("Usuario obtido = "+u.getNome());
+        return u;
     }
     
     public Usuario getUsuario(Usuario usuario)
