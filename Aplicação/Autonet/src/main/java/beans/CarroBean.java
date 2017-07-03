@@ -34,6 +34,15 @@ public class CarroBean
     private int categoria;
     
     private int categoriaSelecionada;
+    private int carroSelecionado;
+
+    public int getCarroSelecionado() {
+        return carroSelecionado;
+    }
+
+    public void setCarroSelecionado(int carroSelecionado) {
+        this.carroSelecionado = carroSelecionado;
+    }
 
     public int getCategoriaSelecionada() {
         return categoriaSelecionada;
@@ -145,7 +154,7 @@ public class CarroBean
     
     public Carro getCarro()
     {
-        return this.carroServico.getCarro(2);
+        return this.carroServico.getCarro(this.carroSelecionado);
     }
     
     public void uploadAction(FileUploadEvent event)
@@ -176,6 +185,12 @@ public class CarroBean
         {
             e.printStackTrace();
         }
+    }
+    
+    public String selecionarCarro(int idCarro)
+    {
+        this.carroSelecionado = idCarro;
+        return "detalheCarro.xhtml";
     }
 
     

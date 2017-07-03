@@ -10,10 +10,28 @@
 
         <ui:composition template="./template/templateAutonet.xhtml">
             
+             <ui:define name="menuLateral">
+                 <h1 id="categoria_menu_h1">CATEGORIAS</h1>
+                    <h:form id="formu">
+                    <ul>
+                        <li><h:commandLink value="Todos" action="home.xhtml">                    
+                            </h:commandLink>
+                        </li>
+                            <ui:repeat value="#{ctgBean.categorias}" var="categoria">
+                                <li>
+                                    <h:commandLink value="#{categoria.nome}" action="home.xhtml">
+                                    </h:commandLink>
+                                </li>
+                            </ui:repeat> 
+                    </ul> 
+                </h:form>   
+            </ui:define>
+            
             <ui:define name="conteudo">
+                
                 <div style="height: 100px; padding:0px; background-color: #550000; text-align: center;
                      font-size: 30pt; font-weight: bold; font-family: Tahoma; color:#fff; padding-top: 20px;">
-                       #{carroBean.carro.idFabricante.nome} #{carroBean.carro.modelo}
+                       #{carroBean.carro.idFabricante.nome} #{carroBean.carro.modelo} 
                 </div>
                 <h:form style="padding: 0px;">
                     <p:panel id="basic" styleClass="customTitleBar" 
@@ -21,7 +39,7 @@
                         <div style="height: 1371px;">
                             <h:panelGrid columns="2" cellpadding="10">
                                 <p:graphicImage style="display: block; margin-left: auto;  margin-right: auto;
-                                                height: 350px; width: 500px;" name="gol_vermelho.jpg" />
+                                                height: 350px; width: 500px;" name="#{carroBean.carro.imagem}" />
                                 <p:outputPanel>
                                     <h:panelGrid columns="2" cellpadding="3">
                                         <h:outputText value="Fabricante:" />
@@ -62,18 +80,31 @@
                                 
                                 <h:outputText></h:outputText>
                                 
-                                <div style="height: 80px; width: 100%; background-color: #000044; 
+                                <h:form>
+                                    <h:commandLink>
+                                <div id="btnAlugarDetalheCarro" style="height: 80px; width: 100%; background-color: #000044; 
                                      color: #fff;  text-align: center; font-size: 30pt; 
                                      font-weight: bold; font-family: Tahoma; color:#fff;
                                      padding-top: 20px;" >
                                     ALUGAR
                                 </div>
+                                    </h:commandLink>     
+                                </h:form>    
+                                <br/>
+                                <h:link outcome="home.xhtml" id="linkVoltar">
+                                <div id="btnVoltarDetalheCarro" style="height: 80px; width: 100%; background-color: #440000; 
+                                     color: #fff;  text-align: center; font-size: 30pt; 
+                                     font-weight: bold; font-family: Tahoma; color:#fff;
+                                     padding-top: 20px;" >
+                                    VOLTAR
+                                </div>
+                                </h:link>    
                             </h:panelGrid>
                         </div>
                     </p:panel>    
                 </h:form>    
             </ui:define>
-
+           
         </ui:composition>
 
     </body>

@@ -40,18 +40,21 @@
             <div id="menuLateral">
                 <ui:insert name="menuLateral">
                     <h1 id="categoria_menu_h1">CATEGORIAS</h1>
+                    <h:form id="formu">
                     <ul>
-                        <li><h:link value="Todos" outcome="home.xhtml"></h:link></li>
-                        <h:form id="formu">
+                        <li><h:commandLink value="Todos">
+                                 <f:ajax event="click" execute="@all" render="formCarros:listaCarros" listener="#{carroBean.setCategoriaSelecionada(0)}"/>
+                            </h:commandLink>
+                        </li>
                             <ui:repeat value="#{ctgBean.categorias}" var="categoria">
                                 <li>
                                     <h:commandLink value="#{categoria.nome}">
                                         <f:ajax event="click" execute="@all" render="formCarros:listaCarros" listener="#{carroBean.setCategoriaSelecionada(categoria.idCategoria)}"/>
                                     </h:commandLink>
                                 </li>
-                            </ui:repeat>
-                         </h:form>    
-                    </ul>    
+                            </ui:repeat> 
+                    </ul> 
+                </h:form>   
                 </ui:insert>
             </div>
             <div id="conteudo" class="left_content">

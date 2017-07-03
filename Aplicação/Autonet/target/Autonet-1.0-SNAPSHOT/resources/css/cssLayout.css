@@ -35,7 +35,7 @@
     background-repeat: repeat-y;
     background-size: 100%;
     width: 150px;
-    height: 2200px;
+    height: 2500px;
     margin-bottom: 10px;
 }
 
@@ -93,6 +93,16 @@
 {
     color: #000000;
     text-align: center;
+}
+
+#btnAlugarDetalheCarro:hover
+{
+    background-color: #0000aa !important;
+}
+
+#btnVoltarDetalheCarro:hover
+{
+    background-color: #aa0000 !important;
 }
 
 .flag
