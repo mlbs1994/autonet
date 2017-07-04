@@ -26,3 +26,26 @@
 {
     font-size:24pt;
 }
+
+#img_logo
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;     
+    height: 85px;
+    padding-left: 430px;
+    padding-right: 100px;
+
+}
+
+.flag
+{
+    width: 80px;
+    height: 50px;
+    padding: 5px;
+}
+
+.flag:first-of-type
+{
+    padding-left: 20px;
+}

@@ -61,7 +61,7 @@ public class LoginBean implements Serializable {
     }
     
     
-    public String autenticarUsuario()
+    public String autenticarUsuario(String tipoUsuario)
     {
         Usuario usr = this.usuarioServico.autenticarUsuario(login, senha);
         
@@ -71,7 +71,14 @@ public class LoginBean implements Serializable {
             this.nome = nomes[0];
             this.idUsuario = usr.getIdUsuario();
             System.out.println("Sucesso");
-            return "home.xhtml";
+            if(tipoUsuario.equals("C"))
+            {
+                return "home.xhtml";
+            }
+            else
+            {
+                return "cadastrarCarro.xhtml";
+            }
         }
         else
         {

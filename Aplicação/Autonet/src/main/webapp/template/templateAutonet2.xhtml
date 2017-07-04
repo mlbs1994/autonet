@@ -16,7 +16,20 @@
 
         <div id="cabecalho" class="top">
             <ui:insert name="cabecalho">
-                <h:graphicImage id="img_logo" library="imagensTemplate" name="autonet_logo.png" />
+                <h:panelGrid columns="2">
+                  <h:graphicImage id="img_logo" library="imagensTemplate" name="autonet_logo.png" />
+                  <h:form  style="width: 400px;">
+                       <h:commandLink action="#">
+                            <h:graphicImage class="flag" library="imagens" name="br_flag.png" />
+                       </h:commandLink>
+                       <h:commandLink action="#">
+                            <h:graphicImage class="flag" library="imagens" name="us_flag.png" />
+                       </h:commandLink>
+                       <h:commandLink action="#">
+                           <h:graphicImage class="flag" library="imagens" name="esp_flag.png" />
+                       </h:commandLink>
+                  </h:form>
+              </h:panelGrid>
             </ui:insert>
         </div>
 
