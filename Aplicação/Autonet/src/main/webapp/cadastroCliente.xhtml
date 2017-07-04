@@ -15,16 +15,22 @@
                 <p:panel id="basic" header="Cadastro - Cliente" styleClass="customTitleBar" 
                          style="margin-bottom:50px; width: 800px; height: 690px; display: block; 
                          margin-left: auto;  margin-right: auto; margin-top: 50px; ">
+                   
+                    
+                    <h:messages errorStyle="color:red"/>
                     <h:form >
                         <h:panelGrid columns="2" cellpadding="5"> 
                             <h:outputText class="labelFields" value="Nome: " />
-                            <p:inputText id="nomeField" size="60" value="#{clienteBean.nome}"/>
+                            <p:inputText id="nomeField" size="60" value="#{clienteBean.nome}" required="true" requiredMessage="Campo Nome é de Prenchimento Obrigatório!"/>
+                            
                             
                             <h:outputText class="labelFields" value="Login: " />
-                            <p:inputText id="loginField" value="#{clienteBean.login}"/>
+                            <p:inputText id="loginField" value="#{clienteBean.login}" required="true" requiredMessage="Campo Login é de Prenchimento Obrigatório!"/>
                             
+                           
                             <h:outputText class="labelFields" value="Senha: " />
                             <p:password id="senhaField" value="#{clienteBean.senha}" feedback="true" />
+                            
                             
                             <h:outputText class="labelFields" value="Confirme a senha: " />
                             <p:password id="senhaFieldConfirm"  feedback="true" />
@@ -87,12 +93,14 @@
                                 <f:selectItems value="#{bandeiraBean.bandeiras}" var="bandeira" itemLabel="#{bandeira.nome}" itemValue="#{bandeira.idBandeira}" />;  
                             </p:selectOneMenu> 
                             
-                            <h:outputText class="labelFields" value="Número do cartão: " />
-                            <p:inputText id="numeroCartaoField" value="#{clienteBean.numeroCartao}"/>
+                            <h:outputText class="labelFields" value="Número do cartão: " />    
+                            <p:inputText id="numeroCartaoField" value="#{clienteBean.numeroCartao}" required="true" requiredMessage="Campo Cartão é de Prenchimento Obrigatório!"/>
+                                 
                             
                             <h:outputText class="labelFields" value="Código de segurança do cartão: " />
                             <p:inputText id="codSegField" value="#{clienteBean.codigoSeguranca}" />
-                               
+                             
+                             
                             <p:commandButton value="Cadastrar" id="btn_logar" actionListener="#{clienteBean.cadastrarCliente()}" ajax="false" style="width: 100px; height: 30px; background-color: red; color:#fff"/>
                         </h:panelGrid>
                     </h:form>    
@@ -101,7 +109,7 @@
             </ui:define>
 
             <ui:define name="rodape">
-                Desenvolvido por Matheus Levi Barouh dos Santos e Saulo Chagas
+                Desenvolvido por Matheus Levi Barouh dos Santos e Saulo Dias das C Mota
             </ui:define>
 
         </ui:composition>
