@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="estilos/login.css" />
+        <title>Autonet - Login do Funcionário</title>
+    </h:head>
+    
+    <body>
+
+        <h:outputStylesheet library="estilos" name = "login.css"></h:outputStylesheet>
+        <ui:composition template="./template/templateAutonet2.xhtml">
+
+            <ui:define name="conteudo">
+                <p:panel id="basic" header="Login" styleClass="customTitleBar" 
+                         style="margin-bottom:20px; width: 800px; height: 200px; display: block; 
+                         margin-left: auto;  margin-right: auto; margin-top: 100px; ">
+                    
+                    
+                    <h:form >
+                        <h:panelGrid columns="2" cellpadding="5">    
+                                <h:outputText class="labelFields" value="Login: " />
+                                <p:inputText id="loginField" value="#{loginBean.login}" required="true"/>
+                                
+                                <h:outputText class="labelFields" value="Senha: " />
+                                <p:password id="feedback" value="#{loginBean.senha}" feedback="true" />
+                                <p:commandButton value="Entrar" action="#{loginBean.autenticarUsuario('F')}"  />
+                                <h:link outcome="cadastroFuncionario.xhtml">Criar uma conta</h:link>
+                        </h:panelGrid>
+                    </h:form>    
+                </p:panel>    
+            </ui:define>
+         
+        </ui:composition>
+
+    </body>
+</html>

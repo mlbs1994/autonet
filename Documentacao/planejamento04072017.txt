@@ -1,0 +1,37 @@
+Plano de desenvolvimento a partir de 04/07/2017  - Autonet 
+
+Matheus 
+
+ - Rearranjar os itens do menu lateral da seguinte forma
+	ALUGUÉIS
+          - Carros disponíveis
+          - Meus carros alugados
+        CATEGORIAS
+            Categorias...
+ - Corrigir os links do menu lateral na view detalheCarro.xhtml
+ - Implementar regras de negócio referentes ao aluguel de carros
+   - Usuários poderão alugar mais de um carro - OK
+   - O mesmo carro não pode ser alugado duas vezes pelo mesmo usuário ou por usuários diferentes
+   - detalheCarro.xhtml não deve oferecer a opção de alugar a fim de atender a regra acima
+ - Deve aparecer na lista de carros se os mesmos estão disponiveis ou alugados, independente desse estado, o carro pode ser consultado (detalhesCarro.xhtml)
+ - Lista de carros (todos, categorias, meus carros alugados) serão exibidas via ajax
+   - Necessário mapear variavel categoriaSelecionada (que representa o id da categoria no bd) para carregar lista de carros além do critério de categoria
+     - Possível solução: Usar números negativos (que serão avaliados a nível de aplicação) para mapear outros critérios além da categoria:
+                -2 -> Carros alugados
+		-1 -> Carros disponíveis
+	         0 -> Todos os carros
+		 1-N -> Categorias
+
+Saulo 
+
+ - Finalizar intercionalização
+      - Português (pt) - Brasil
+      - Inglês (en) - Estados Unidos
+      - Espanhol (esp) - Espanha
+ - Finalizar validação e mensagens
+	- Login (Deve aparecer mensagens de erro. ex: "Login ou senha incorretos")
+        - Cadastros 
+        - Alugar (Data de aluguel não deve ser posterior a data de devolução ou vice-versa)
+ - Conversão
+
+
