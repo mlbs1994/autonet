@@ -27,6 +27,8 @@ public interface AluguelDAO
     
     public Aluguel getAluguelUsuario(Usuario usr);
     
+    public List<Aluguel> getAlugueisUsuario(Usuario usr);
+    
     public void commitTransacao();
     
     public void finalizarTransacao();

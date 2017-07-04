@@ -106,6 +106,15 @@ public class AluguelServicoDAO implements AluguelDAO
         }
         
     }
+    
+    @Override
+    public List<Aluguel> getAlugueisUsuario(Usuario usr) 
+    {    
+        Query q = this.em.createQuery("SELECT a FROM Aluguel a WHERE a.idUsuario = :idUsuario");
+        q.setParameter("idUsuario", usr);
+        List<Aluguel> alugueisUsuario = q.getResultList();
+        return alugueisUsuario;
+    }
 
     @Override
     public void finalizarTransacao() {
@@ -116,5 +125,6 @@ public class AluguelServicoDAO implements AluguelDAO
     public void abortarTransacao() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     
 }

@@ -9,15 +9,18 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import modelo.Aluguel;
 import modelo.Carro;
 import modelo.Categoria;
 import modelo.Fabricante;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.primefaces.event.FileUploadEvent;
+import servico.AluguelServicoDAO;
 import servico.CarroServicoDAO;
 import servico.CategoriaServicoDAO;
 import servico.FabricanteServicoDAO;
+import servico.UsuarioServicoDAO;
  
 @ManagedBean(name = "carroBean")
 @SessionScoped
@@ -26,6 +29,8 @@ public class CarroBean implements Serializable
      
     private Carro c;
     private List<Carro> carros;
+    private List<Carro> carrosAlugadosUsuario;
+    
     private CarroServicoDAO carroServico;
     private CategoriaServicoDAO categoriaServico;
     
@@ -41,19 +46,17 @@ public class CarroBean implements Serializable
     
     private int categoriaSelecionada;
     private int carroSelecionado;
-    
-    @ManagedProperty(value="#{aluguelBean}")
-    private AluguelBean aluguelBean;
 
-    public AluguelBean getAluguelBean() {
-        return aluguelBean;
+    public CarroBean()
+    {
+        this.c = new Carro();
+        this.carros = new ArrayList();
+        this.carrosAlugadosUsuario = new ArrayList();
+        this.carroServico = new CarroServicoDAO();
+        this.categoriaServico = new CategoriaServicoDAO();
+        this.carros = this.carroServico.getListaCarros();
     }
-
-    public void setAluguelBean(AluguelBean aluguelBean) {
-        this.aluguelBean = aluguelBean;
-    }
-    
-   
+         
     public float getValorTotal() {
         return valorTotal;
     }
@@ -153,16 +156,7 @@ public class CarroBean implements Serializable
     public void setCategoria(int categoria) {
         this.categoria = categoria;
     }
-    
-    public CarroBean()
-    {
-        this.c = new Carro();
-        this.carros = new ArrayList();
-        this.carroServico = new CarroServicoDAO();
-        this.categoriaServico = new CategoriaServicoDAO();
-        this.carros = this.carroServico.getListaCarros();
-    }
-     
+      
     public List<Carro> getCarros() 
     {
         if(this.categoriaSelecionada==0)
@@ -176,6 +170,16 @@ public class CarroBean implements Serializable
         }
         
         return this.carros;
+    }
+    
+    public List<Carro> getCarrosAlugadosUsuario() 
+    {
+     
+        return this.carrosAlugadosUsuario;
+    }
+
+    public void setCarrosAlugadosUsuario(List<Carro> carrosAlugadosUsuario) {
+        this.carrosAlugadosUsuario = carrosAlugadosUsuario;
     }
     
     public Carro getCarro()
