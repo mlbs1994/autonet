@@ -21,19 +21,21 @@
                     <h:form >
                         <h:panelGrid columns="2" cellpadding="5"> 
                             <h:outputText class="labelFields" value="Nome: " />
-                            <p:inputText id="nomeField" size="60" value="#{clienteBean.nome}" required="true" requiredMessage="Campo Nome é de Prenchimento Obrigatório!"/>
+                            <p:inputText id="nomeField" size="60" value="#{clienteBean.nome}" required="true" requiredMessage="#{msgs.notNull}"/>
                             
                             
                             <h:outputText class="labelFields" value="Login: " />
-                            <p:inputText id="loginField" value="#{clienteBean.login}" required="true" requiredMessage="Campo Login é de Prenchimento Obrigatório!"/>
+                            <p:inputText id="loginField" value="#{clienteBean.login}" required="true" requiredMessage="#{msgs.notNull}"/>
                             
-                           
+                          
                             <h:outputText class="labelFields" value="Senha: " />
-                            <p:password id="senhaField" value="#{clienteBean.senha}" feedback="true" />
-                            
-                            
+                            <p:password id="senhaField" value="#{clienteBean.senha}" feedback="true" required="true" />
+                                                         
+                               
                             <h:outputText class="labelFields" value="Confirme a senha: " />
                             <p:password id="senhaFieldConfirm"  feedback="true" />
+                             
+                            
                             
                             <h:outputText class="labelFields" value="Telefone: "  />
                             <p:inputText id="telField" size="16" value="#{clienteBean.telefone}"/>
@@ -94,11 +96,11 @@
                             </p:selectOneMenu> 
                             
                             <h:outputText class="labelFields" value="Número do cartão: " />    
-                            <p:inputText id="numeroCartaoField" value="#{clienteBean.numeroCartao}" required="true" requiredMessage="Campo Cartão é de Prenchimento Obrigatório!"/>
+                            <p:inputText id="numeroCartaoField" value="#{clienteBean.numeroCartao}" required="true" requiredMessage="#{msgs.notNull}"/>
                                  
                             
                             <h:outputText class="labelFields" value="Código de segurança do cartão: " />
-                            <p:inputText id="codSegField" value="#{clienteBean.codigoSeguranca}" />
+                            <p:inputText id="codSegField" value="#{clienteBean.codigoSeguranca}"  required="true" requiredMessage="#{msgs.notNull}"/>
                              
                              
                             <p:commandButton value="Cadastrar" id="btn_logar" actionListener="#{clienteBean.cadastrarCliente()}" ajax="false" style="width: 100px; height: 30px; background-color: red; color:#fff"/>
