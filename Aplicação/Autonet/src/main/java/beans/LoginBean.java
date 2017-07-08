@@ -79,14 +79,11 @@ public class LoginBean implements Serializable {
         UsuarioServicoDAO usrDAO = new UsuarioServicoDAO();
         
         List<Aluguel> listaAlugueisUsuario = alDAO.getAlugueisUsuario(this.usuarioLogado);
-        List<Carro> listaCarrosAlugados = new ArrayList();
         
         for(int i=0;i<listaAlugueisUsuario.size();i++)
         {
-            listaCarrosAlugados.add(listaAlugueisUsuario.get(i).getIdCarro());
+            this.carrosAlugados.add(listaAlugueisUsuario.get(i).getIdCarro());
         }
-        
-        this.carrosAlugados = listaCarrosAlugados;
         
         return this.carrosAlugados;
     }

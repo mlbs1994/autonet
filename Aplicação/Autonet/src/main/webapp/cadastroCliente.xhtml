@@ -12,7 +12,7 @@
             
             <ui:define name="conteudo">
                 <div id="conteudoCliente">
-                <p:panel id="basic" header="Cadastro - Cliente" styleClass="customTitleBar" 
+                    <p:panel id="basic" header="#{msgs.titPagCadClient}" styleClass="customTitleBar" 
                          style="margin-bottom:50px; width: 800px; height: 690px; display: block; 
                          margin-left: auto;  margin-right: auto; margin-top: 50px; ">
                    
@@ -22,53 +22,64 @@
                         <h:panelGrid columns="2" cellpadding="5"> 
                             
                             <h:outputText class="labelFields" value="#{msgs.nome}" />
-                            <p:inputText id="nomeField" size="30" value="#{clienteBean.nome}" required="true" requiredMessage="#{msgs.notNull}" 
+                            <h:panelGroup> 
+                               <p:inputText id="nomeField" size="45" value="#{clienteBean.nome}" required="true" requiredMessage="#{msgs.nomeNotNull}" 
                                          converter="upperCaseConverter">
-                            <f:ajax event="blur" render="m_nome" />
-                            </p:inputText>
+                                  <f:ajax event="blur" render="m_nome" />
+                               </p:inputText>
                             <h:message id="m_nome" for="nomeField"   style="color:red"/>
+                            </h:panelGroup>
                             
                             
-                            <h:outputText class="labelFields" value="Login: " />
-                            <p:inputText id="loginField" value="#{clienteBean.login}" required="true" requiredMessage="#{msgs.notNull}"/>
-                          
-                            <h:outputText class="labelFields" value="Senha: " />
-                            <p:password id="senhaField" value="#{clienteBean.senha}" feedback="true" required="true" />
-                                                         
+                            <h:outputText class="labelFields"  value="Login: " />
+                            <h:panelGroup>
+                            <p:inputText id="loginField" size="30" value="#{clienteBean.login}" required="true" requiredMessage="#{msgs.loginNotNull}">
+                                   <f:ajax event="blur" render="m_login" />
+                            </p:inputText>
+                            <h:message id="m_login" for="loginField"   style="color:red"/>
+                            </h:panelGroup>
+                            
+                            
+                            
+                            <h:outputText class="labelFields" value="#{msgs.senha} " />
+                            <h:panelGroup>
+                              <p:password id="senhaField" value="#{clienteBean.senha}" feedback="true" required="true" />
+                            <h:message id="m_senha" for="senhaField"   style="color:red"/>
+                            </h:panelGroup>                       
                                
-                            <h:outputText class="labelFields" value="Confirme a senha: " />
+                            <h:outputText class="labelFields" value="#{msgs.confirmaSenha} " />
                             <p:password id="senhaFieldConfirm"  feedback="true" />
                              
                             
                             
-                            <h:outputText class="labelFields" value="Telefone: "  />
+                            <h:outputText class="labelFields" value="#{msgs.telefone} "  />
                             <p:inputText id="telField" size="16" value="#{clienteBean.telefone}" >
                             <p:watermark  for="telField" value="(99)9999-9999"/>
                             <f:validateRegex pattern="\([1-9]{2}\)[2-9][0-9]{3}\-[0-9]{4}"/>
                             </p:inputText>
                             
-                            <h:outputText class="labelFields" value="Celular: " />
+                            <h:outputText class="labelFields" value="#{msgs.celular} " />
                             <p:inputText id="celField" size="16" value="#{clienteBean.celular}" >
                             <p:watermark  for="celField" value="(99)99999-9999"/>
                             <f:validateRegex pattern="\([1-9]{2}\)[2-9][0-9]{3,4}\-[0-9]{4}"/>
                             </p:inputText>
                             
-                            <h:outputText class="labelFields" value="Logradouro: " />
+                            <h:outputText class="labelFields" value="#{msgs.logradouro} " />
                             <p:inputText id="logField" size="40" value="#{clienteBean.logradouro}"/>
                             
-                            <h:outputText class="labelFields" value="Número: " />
+                            <h:outputText class="labelFields" value="#{msgs.numero} " />
                             <p:inputText id="numField" size="10" value="#{clienteBean.numero}"/>
                             
-                            <h:outputText class="labelFields" value="Complemento: " />
+                            <h:outputText class="labelFields" value="#{msgs.complemento} " />
                             <p:inputText id="compField" size="15" value="#{clienteBean.complemento}"/>
                             
-                            <h:outputText class="labelFields" value="Bairro: " />
+                            <h:outputText class="labelFields" value="#{msgs.bairro} " />
                             <p:inputText id="bairroField" size="30" value="#{clienteBean.bairro}"/>
                             
-                            <h:outputText class="labelFields" value="Cidade: " />
+                            <h:outputText class="labelFields" value="#{msgs.cidade} " />
                             <p:inputText id="cidadeField" value="#{clienteBean.cidade}"/>
                             
-                            <h:outputText class="labelFields" value="Estado: " />
+                            <h:outputText class="labelFields" value="#{msgs.estado} " />
                             <p:selectOneMenu id="estadoField" value="#{clienteBean.estado}" style="width:85px">
                                 <f:selectItem itemLabel="AC" itemValue="Acre" />
                                 <f:selectItem itemLabel="AL" itemValue="Alagoas" />
@@ -99,21 +110,21 @@
                                 <f:selectItem itemLabel="TO" itemValue="Tocantins" />
                             </p:selectOneMenu>
                             
-                            <h:outputText class="labelFields" value="Bandeira do cartão: " />
+                            <h:outputText class="labelFields" value="#{msgs.badeira_cartao} " />
                             <p:selectOneMenu id="bandeiraField" value="#{clienteBean.bandeira}">
-                                <f:selectItem itemLabel="Selecione a bandeira do cartão" itemValue="" />;
+                                <f:selectItem itemLabel="#{msgs.mensSelBandCard}" itemValue="" />;
                                 <f:selectItems value="#{bandeiraBean.bandeiras}" var="bandeira" itemLabel="#{bandeira.nome}" itemValue="#{bandeira.idBandeira}" />;  
                             </p:selectOneMenu> 
                             
-                            <h:outputText class="labelFields" value="Número do cartão: " />    
+                            <h:outputText class="labelFields" value="#{msgs.numero_cartao} " />    
                             <p:inputText id="numeroCartaoField" value="#{clienteBean.numeroCartao}" required="true" requiredMessage="#{msgs.notNull}"/>
                                                          
                             
-                            <h:outputText class="labelFields" value="Código de segurança do cartão: " />
+                            <h:outputText class="labelFields" value="#{msgs.codSeg} " />
                             <p:inputText id="codSegField" value="#{clienteBean.codigoSeguranca}"  required="true" requiredMessage="#{msgs.notNull}"/>
                             
                              
-                            <p:commandButton value="Cadastrar" id="btn_logar" actionListener="#{clienteBean.cadastrarCliente()}" ajax="false" style="width: 100px; height: 30px; background-color: red; color:#fff"/>
+                            <p:commandButton value="#{msgs.btCadastrar}" id="btn_logar" actionListener="#{clienteBean.cadastrarCliente()}" ajax="false" style="width: 100px; height: 30px; background-color: red; color:#fff"/>
                                                     
                         </h:panelGrid>
                     </h:form>    
@@ -121,9 +132,7 @@
                 </div>    
             </ui:define>
 
-            <ui:define name="rodape">
-                Desenvolvido por Matheus Levi Barouh dos Santos e Saulo Dias das C Mota
-            </ui:define>
+            <ui:define name="rodape">  <p> #{msgs.rodape} </p> </ui:define>
 
         </ui:composition>
 

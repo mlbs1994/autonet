@@ -29,6 +29,7 @@ public class CarroBean implements Serializable
      
     private Carro c;
     private List<Carro> carros;
+    private List<Carro> carrosAlugadosUsuario;
     
     private CarroServicoDAO carroServico;
     private CategoriaServicoDAO categoriaServico;
@@ -45,29 +46,17 @@ public class CarroBean implements Serializable
     
     private int categoriaSelecionada;
     private int carroSelecionado;
-    
-    @ManagedProperty(name="carrosAlugadosBean", value="#{loginBean}")
-    private LoginBean carrosAlugadosBean;
-  
+
     public CarroBean()
     {
         this.c = new Carro();
         this.carros = new ArrayList();
+        this.carrosAlugadosUsuario = new ArrayList();
         this.carroServico = new CarroServicoDAO();
         this.categoriaServico = new CategoriaServicoDAO();
         this.carros = this.carroServico.getListaCarros();
     }
-
-    public LoginBean getCarrosAlugadosBean() {
-        return carrosAlugadosBean;
-    }
-
-    public void setCarrosAlugadosBean(LoginBean carrosAlugadosBean) {
-        this.carrosAlugadosBean = carrosAlugadosBean;
-    }
-    
-    
-
+         
     public float getValorTotal() {
         return valorTotal;
     }
@@ -170,19 +159,11 @@ public class CarroBean implements Serializable
       
     public List<Carro> getCarros() 
     {
-         if(this.categoriaSelecionada==-2) //Carros alugados pelo usuario
-        {
-            this.carros = this.carrosAlugadosBean.getCarrosAlugados();
-        }
-        else if(this.categoriaSelecionada==-1) // Carros disponíveis
-        {
-            this.carros = this.carroServico.getListaCarrosStatus("Disponível");
-        }
-        else if(this.categoriaSelecionada==0) // Todos os carros
+        if(this.categoriaSelecionada==0)
         {
             this.carros = this.carroServico.getListaCarros();
         }
-        else // Por Categoria especificada
+        else
         {
             Categoria c = this.categoriaServico.getCategoria(this.getCategoriaSelecionada());
             this.carros = this.carroServico.getListaCarrosCategoria(c);
@@ -191,8 +172,16 @@ public class CarroBean implements Serializable
         return this.carros;
     }
     
+    public List<Carro> getCarrosAlugadosUsuario() 
+    {
+     
+        return this.carrosAlugadosUsuario;
+    }
+
+    public void setCarrosAlugadosUsuario(List<Carro> carrosAlugadosUsuario) {
+        this.carrosAlugadosUsuario = carrosAlugadosUsuario;
+    }
     
-  
     public Carro getCarro()
     {
         return this.carroServico.getCarro(this.carroSelecionado);

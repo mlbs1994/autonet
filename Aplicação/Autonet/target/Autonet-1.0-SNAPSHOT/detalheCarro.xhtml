@@ -12,29 +12,20 @@
         <ui:composition template="./template/templateAutonet.xhtml">
             
              <ui:define name="menuLateral">
-                 <h1 id="categoria_menu_h1" style="text-align: left;">CARROS</h1>
-                    <h:form>
-                        <ul>
-                            <li><h:commandLink value="Disponíveis" action="consultaAluguelCarro.xhtml"/></li>
-                            <li><h:commandLink value="Alugados" action="consultaAluguelCarro.xhtml"/></li>
-                        </ul>
-                    </h:form>
-                    <h1 id="categoria_menu_h1" style="text-align: left;">CATEGORIAS</h1>
+                 <h1 id="categoria_menu_h1">CATEGORIAS</h1>
                     <h:form id="formu">
                     <ul>
-                        <li><h:commandLink value="Todos">
-                                 <f:ajax event="click" execute="@all" render="formCarros:listaCarros" listener="#{carroBean.setCategoriaSelecionada(0)}"/>
+                        <li><h:commandLink value="Todos" action="home.xhtml">                    
                             </h:commandLink>
                         </li>
                             <ui:repeat value="#{ctgBean.categorias}" var="categoria">
                                 <li>
-                                    <h:commandLink value="#{categoria.nome}">
-                                        <f:ajax event="click" execute="@all" render="formCarros:listaCarros" listener="#{carroBean.setCategoriaSelecionada(categoria.idCategoria)}"/>
+                                    <h:commandLink value="#{categoria.nome}" action="home.xhtml">
                                     </h:commandLink>
                                 </li>
                             </ui:repeat> 
                     </ul> 
-                    </h:form>   
+                </h:form>   
             </ui:define>
             
             <ui:define name="conteudo">
@@ -76,20 +67,21 @@
                                     <h:panelGrid columns="2"> 
 
                                     <h:outputText style="width: 100px;" class="labelFields" value="Data do aluguel: " />
-                                    <p:calendar id="dataAluguelCampo" value="#{aluguelBean.dataAluguel}" pattern="dd/MM/yyyy">
-                                        <p:ajax event="dateSelect" listener="#{calculadoraAluguelBean.calcularTotalAluguel()}" update="valorTotal" />
-                                    </p:calendar>
+                                    <p:calendar id="dataAluguelField" value="#{aluguelBean.dataAluguel}"  pattern="dd/MM/yyyy"/>
 
                                     <h:outputText class="labelFields" value="Prazo de entrega: " />
-                                    <p:calendar id="dataDevolucaoCampo" value="#{aluguelBean.dataDevolucao}" pattern="dd/MM/yyyy">
-                                        <p:ajax event="dateSelect" listener="#{calculadoraAluguelBean.calcularTotalAluguel()}" update="valorTotal" />
-                                    </p:calendar>                    
+                                    <p:calendar id="dataEntregaField" value="#{aluguelBean.dataDevolucao}" pattern="dd/MM/yyyy">
+                                        <p:ajax event="dateSelect" listener="#{aluguelBean.calcularTotal()}" update="valorTotal" />
+                                    </p:calendar>
+                                                                     
                                     
                                     <h:outputText class="labelFields" value="Valor Diaria: "/> 
                                     <h:outputText  value="#{carroBean.carro.valorAluguelDiaria}"/>
                                                                          
                                     <h:outputText class="labelFields" value="Valor Total: "/>
                                     <h:outputText  id="valorTotal" value="#{aluguelBean.totalAluguel}"/>
+                                    
+                                    
                                     
                                 </h:panelGrid>
                                     
@@ -106,14 +98,14 @@
                                 </h:commandLink>   
                                
                                 <br/>
-                                <h:commandLink action="#{aluguelBean.voltar()}" id="linkVoltar">
+                                <h:link outcome="home.xhtml" id="linkVoltar">
                                 <div id="btnVoltarDetalheCarro" style="height: 80px; width: 100%; background-color: #440000; 
                                      color: #fff;  text-align: center; font-size: 30pt; 
                                      font-weight: bold; font-family: Tahoma; color:#fff;
                                      padding-top: 20px;" >
                                     VOLTAR
                                 </div>
-                                </h:commandLink>    
+                                </h:link>    
                             </h:panelGrid>
                         </div>
                     </p:panel>    
