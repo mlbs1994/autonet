@@ -24,13 +24,13 @@
                     
                     <h:form >
                         <h:panelGrid columns="2" cellpadding="5">    
-                                <h:outputText class="labelFields" value="Login: "  />
-                                <p:inputText id="loginField" value="#{loginBean.login}" required="true"/>
+                                <h:outputText class="labelFields" value="#{msgs.login}: "  />
+                                <p:inputText id="loginField" value="#{loginBean.login}" />
                                 
-                                <h:outputText class="labelFields" value="Senha: " />
+                                <h:outputText class="labelFields" value="#{msgs.loginSenha}: " />
                                 <p:password id="feedback" value="#{loginBean.senha}" feedback="true" />
-                                <p:commandButton value="Entrar" action="#{loginBean.autenticarUsuario('C')}"  />
-                                <h:link outcome="cadastroCliente.xhtml">Criar uma conta</h:link>
+                                <p:commandButton value="#{msgs.loginBtEntrar}" action="#{loginBean.autenticarUsuario('C')}"  />
+                                <h:link outcome="cadastroCliente.xhtml">#{msgs.loginCriaCc}</h:link>
                         </h:panelGrid>
                     </h:form>    
                 </p:panel>    

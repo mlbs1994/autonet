@@ -17,16 +17,20 @@
                          margin-left: auto;  margin-right: auto; margin-top: 50px; ">
                    
                     
-                    <h:messages errorStyle="color:red"/>
-                    <h:form >
+                   
+                    <h:form >                        
                         <h:panelGrid columns="2" cellpadding="5"> 
-                            <h:outputText class="labelFields" value="Nome: " />
-                            <p:inputText id="nomeField" size="60" value="#{clienteBean.nome}" required="true" requiredMessage="#{msgs.notNull}"/>
+                            
+                            <h:outputText class="labelFields" value="#{msgs.nome}" />
+                            <p:inputText id="nomeField" size="30" value="#{clienteBean.nome}" required="true" requiredMessage="#{msgs.notNull}" 
+                                         converter="upperCaseConverter">
+                            <f:ajax event="blur" render="m_nome" />
+                            </p:inputText>
+                            <h:message id="m_nome" for="nomeField"   style="color:red"/>
                             
                             
                             <h:outputText class="labelFields" value="Login: " />
                             <p:inputText id="loginField" value="#{clienteBean.login}" required="true" requiredMessage="#{msgs.notNull}"/>
-                            
                           
                             <h:outputText class="labelFields" value="Senha: " />
                             <p:password id="senhaField" value="#{clienteBean.senha}" feedback="true" required="true" />
@@ -38,13 +42,19 @@
                             
                             
                             <h:outputText class="labelFields" value="Telefone: "  />
-                            <p:inputText id="telField" size="16" value="#{clienteBean.telefone}"/>
+                            <p:inputText id="telField" size="16" value="#{clienteBean.telefone}" >
+                            <p:watermark  for="telField" value="(99)9999-9999"/>
+                            <f:validateRegex pattern="\([1-9]{2}\)[2-9][0-9]{3}\-[0-9]{4}"/>
+                            </p:inputText>
                             
                             <h:outputText class="labelFields" value="Celular: " />
-                            <p:inputText id="celField" size="16" value="#{clienteBean.celular}"/>
+                            <p:inputText id="celField" size="16" value="#{clienteBean.celular}" >
+                            <p:watermark  for="celField" value="(99)99999-9999"/>
+                            <f:validateRegex pattern="\([1-9]{2}\)[2-9][0-9]{3,4}\-[0-9]{4}"/>
+                            </p:inputText>
                             
                             <h:outputText class="labelFields" value="Logradouro: " />
-                            <p:inputText id="logField" size="60" value="#{clienteBean.logradouro}"/>
+                            <p:inputText id="logField" size="40" value="#{clienteBean.logradouro}"/>
                             
                             <h:outputText class="labelFields" value="Número: " />
                             <p:inputText id="numField" size="10" value="#{clienteBean.numero}"/>
@@ -97,13 +107,14 @@
                             
                             <h:outputText class="labelFields" value="Número do cartão: " />    
                             <p:inputText id="numeroCartaoField" value="#{clienteBean.numeroCartao}" required="true" requiredMessage="#{msgs.notNull}"/>
-                                 
+                                                         
                             
                             <h:outputText class="labelFields" value="Código de segurança do cartão: " />
                             <p:inputText id="codSegField" value="#{clienteBean.codigoSeguranca}"  required="true" requiredMessage="#{msgs.notNull}"/>
-                             
+                            
                              
                             <p:commandButton value="Cadastrar" id="btn_logar" actionListener="#{clienteBean.cadastrarCliente()}" ajax="false" style="width: 100px; height: 30px; background-color: red; color:#fff"/>
+                                                    
                         </h:panelGrid>
                     </h:form>    
                 </p:panel>

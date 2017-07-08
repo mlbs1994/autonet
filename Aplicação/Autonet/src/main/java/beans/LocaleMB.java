@@ -21,7 +21,12 @@ public class LocaleMB implements Serializable{
 		UIViewRoot viewRoot = FacesContext.getCurrentInstance().getViewRoot();  
 		currentLocale = Locale.US;  
 		viewRoot.setLocale(currentLocale);  
-	}  
+	} 
+        public void spanishLocale() {  
+		UIViewRoot viewRoot = FacesContext.getCurrentInstance().getViewRoot();  
+		currentLocale = new Locale("es", "AR");  
+		viewRoot.setLocale(currentLocale);
+        }
 	public void portugueseLocale() {  
 		UIViewRoot viewRoot = FacesContext.getCurrentInstance().getViewRoot();  
 		currentLocale = new Locale("pt", "BR");  

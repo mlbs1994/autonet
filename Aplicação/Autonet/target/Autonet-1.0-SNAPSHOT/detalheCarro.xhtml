@@ -73,16 +73,18 @@
                                     <p:calendar id="dataEntregaField" value="#{aluguelBean.dataDevolucao}" pattern="dd/MM/yyyy">
                                         <p:ajax event="dateSelect" listener="#{aluguelBean.calcularTotal()}" update="valorTotal" />
                                     </p:calendar>
+                                                                     
                                     
-                                    <h:outputText class="labelFields" value="Valor Diária: " />
-                                    <h:outputText  value="#{carroBean.carro.valorAluguelDiaria}" />
-
-                                    <h:outputText class="labelFields" value="Valor Total: " />
-                                    <h:outputText  id="valorTotal" value="#{aluguelBean.totalAluguel}"   />
+                                    <h:outputText class="labelFields" value="Valor Diaria: "/> 
+                                    <h:outputText  value="#{carroBean.carro.valorAluguelDiaria}"/>
+                                                                         
+                                    <h:outputText class="labelFields" value="Valor Total: "/>
+                                    <h:outputText  id="valorTotal" value="#{aluguelBean.totalAluguel}"/>
+                                    
+                                    
                                     
                                 </h:panelGrid>
                                     
-                                
                                 </h:form>
                                 <h:outputText></h:outputText>
                                 

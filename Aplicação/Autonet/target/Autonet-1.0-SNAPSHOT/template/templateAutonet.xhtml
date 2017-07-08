@@ -17,19 +17,19 @@
         <div id="cabecalho">
             <ui:insert name="cabecalho">
               <h:panelGrid columns="5">
-                  <h:outputText id="loginHeader" value="Bem Vindo #{loginBean.nome}"></h:outputText>  
+                  <h:outputText id="loginHeader" value="#{msgs.saudacao}  #{loginBean.nome}"></h:outputText>  
                   <h:form>
                       <h:commandLink action="#{logoutBean.logout()}">Logout</h:commandLink>
                   </h:form>    
                   <h:graphicImage id="img_logo" library="imagensTemplate" name="autonet_logo.png" />
                   <h:form  style="width: 400px;">
-                       <h:commandLink action="#">
+                       <h:commandLink action="#{localeMB.portugueseLocale}">
                             <h:graphicImage class="flag" library="imagens" name="br_flag.png" />
                        </h:commandLink>
-                       <h:commandLink action="#">
+                       <h:commandLink action="#{localeMB.englishLocale}">
                             <h:graphicImage class="flag" library="imagens" name="us_flag.png" />
                        </h:commandLink>
-                       <h:commandLink action="#">
+                       <h:commandLink action="#{localeMB.spanishLocale}">
                            <h:graphicImage class="flag" library="imagens" name="esp_flag.png" />
                        </h:commandLink>
                   </h:form>
@@ -68,7 +68,7 @@
             </div>
         </div>
         <div id="rodape">
-            <ui:insert name="rodape"><p>Desenvolvido por Matheus Levi Barouh dos Santos e Saulo Dias das Chagas Mota</p></ui:insert>
+            <ui:insert name="#{msgs.rodape}"><p> roda </p></ui:insert>
         </div>
         
     </h:body>

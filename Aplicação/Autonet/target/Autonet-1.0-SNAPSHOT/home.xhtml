@@ -18,7 +18,9 @@
                 <h:form id="formCarros"> 
                     <p:dataScroller id="listaCarros" value="#{carroBean.carros}" var="carro" chunkSize="10">
                         <f:facet name="header">
-                            CARROS 
+                            
+                            <h:outputText value="#{msgs.homecarro}" />
+                            
                         </f:facet>
 
                         <h:panelGrid columns="2" style="width:60%" columnClasses="">
@@ -26,7 +28,7 @@
 
                             <p:outputPanel>
                                 <h:panelGrid columns="2" cellpadding="3">
-                                    <h:outputText value="Fabricante:" />
+                                    <h:outputText value="#{msgs.homefabricante}" />
                                     <h:outputText value="#{carro.idFabricante.nome}" style="font-weight: bold"/>
                                     
                                     <h:outputText value="Modelo:" />
