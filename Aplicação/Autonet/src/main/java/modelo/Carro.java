@@ -57,7 +57,11 @@ public class Carro implements Serializable {
     @Size(min = 1, max = 60)
     @Column(name = "cor")
     private String cor;
-
+    @Size(min = 1, max = 60)
+    @Column(name = "status")
+    private String status;
+    
+    
     public String getAno() {
         return ano;
     }
@@ -157,6 +161,14 @@ public class Carro implements Serializable {
 
     public void setIdFabricante(Fabricante idFabricante) {
         this.idFabricante = idFabricante;
+    }
+    
+     public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @XmlTransient

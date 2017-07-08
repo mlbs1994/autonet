@@ -14,6 +14,7 @@ import modelo.Usuario;
 import org.joda.time.DateTime;
 import servico.AluguelServicoDAO;
 import org.joda.time.Days;
+import servico.CarroServicoDAO;
 import servico.UsuarioServicoDAO;
 
 @ManagedBean(name="aluguelBean")
@@ -38,7 +39,6 @@ public class AluguelBean
     {
         this.aluguelServico = new AluguelServicoDAO();
         this.a = new Aluguel();
-        
     }
     
     public LoginBean getuBean() {
@@ -117,28 +117,29 @@ public class AluguelBean
     public void setCarro(Carro carro) {
         this.carro = carro;
     }
-    
-    public void calcularTotal()
-    {
-        int dias = Days.daysBetween(new DateTime(dataAluguel), new DateTime(dataDevolucao)).getDays();
-        
-        this.totalAluguel = this.cBean.getCarroValorDiaria()*dias;
-    }
-
+   
     public String fazerAluguel()
     {
         try
         {
             UsuarioServicoDAO usuarioServico = new UsuarioServicoDAO();
+            CarroServicoDAO carroDAO = new CarroServicoDAO();
         
+            Carro c = this.cBean.getCarro();
+            
             this.a.setDataAluguel(dataAluguel);
             this.a.setDataDevolução(dataDevolucao);
             this.a.setTotalAluguel(totalAluguel);
-            this.a.setIdCarro(this.cBean.getCarro());
+            this.a.setIdCarro(c);
             this.a.setIdUsuario(usuarioServico.getUsuario(this.uBean.getIdUsuario()));
             
             this.aluguelServico.cadastrarAluguel(this.a);
             this.aluguelServico.commitTransacao();
+            
+            //Marcando o carro como alugado
+            c.setStatus("Alugado");
+            carroDAO.atualizarCarro(c);
+            carroDAO.commitTransacao();
             
             return "AluguelSucesso.xhtml";
             
@@ -149,7 +150,13 @@ public class AluguelBean
             return "home.xhtml";
         }
         
-        
-        
+    }
+    
+    public String voltar()
+    {
+        this.dataAluguel = null;
+        this.dataDevolucao = null;
+        this.totalAluguel = 0.0f;
+        return "home.xhtml";
     }
 }

@@ -88,6 +88,15 @@ public class CarroServicoDAO implements CarroDAO
     }
     
     @Override
+    public List<Carro> getListaCarrosStatus(String status) {
+       
+        Query q = this.em.createQuery("SELECT c FROM Carro c WHERE c.status = :status");
+        q.setParameter("status", status);
+
+        return q.getResultList();
+    }
+    
+    @Override
     public List<Carro> getListaCarrosCategoria(Categoria ctg) {
        
         Query q = this.em.createQuery("SELECT c FROM Carro c WHERE c.idCategoria = :idCategoria");

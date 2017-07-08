@@ -39,7 +39,22 @@
         <div>
             <div id="menuLateral">
                 <ui:insert name="menuLateral">
-                    <h1 id="categoria_menu_h1">CATEGORIAS</h1>
+                    <h1 id="categoria_menu_h1" style="text-align: left;">CARROS</h1>
+                    <h:form id="carrosMenu">
+                        <ul>
+                            <li>
+                                <h:commandLink value="Disponíveis">
+                                    <f:ajax event="click" execute="@all" render="formCarros:listaCarros" listener="#{carroBean.setCategoriaSelecionada(-1)}"/>
+                                </h:commandLink>
+                            </li>
+                            <li>
+                                <h:commandLink value="Alugados">
+                                    <f:ajax event="click" execute="@all" render="formCarros:listaCarros" listener="#{carroBean.setCategoriaSelecionada(-2)}"/>
+                                </h:commandLink>
+                            </li>
+                        </ul>
+                    </h:form>
+                    <h1 id="categoria_menu_h1" style="text-align: left;">CATEGORIAS</h1>
                     <h:form id="formu">
                     <ul>
                         <li><h:commandLink value="Todos">
@@ -55,12 +70,6 @@
                             </ui:repeat> 
                     </ul> 
                     </h:form>   
-                    <h1 id="categoria_menu_h1">ALUGUÉIS</h1>
-                    <h:form>
-                        <ul>
-                            <li><h:commandLink value="Meus carros alugados" action="consultaAluguelCarro.xhtml"/></li>
-                        </ul>
-                    </h:form>
                 </ui:insert>
             </div>
             <div id="conteudo" class="left_content">
