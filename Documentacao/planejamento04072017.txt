@@ -2,10 +2,10 @@ Plano de desenvolvimento a partir de 04/07/2017  - Autonet
 
 Matheus 
 
- - Rearranjar os itens do menu lateral da seguinte forma
-	ALUGUÉIS
-          - Carros disponíveis
-          - Meus carros alugados
+ - Rearranjar os itens do menu lateral da seguinte forma OK
+	CARROS
+          - Disponíveis
+          - Alugados
         CATEGORIAS
             Categorias...
  - Corrigir os links do menu lateral na view detalheCarro.xhtml
