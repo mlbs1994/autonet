@@ -15,9 +15,7 @@
                     <p:panel id="basic" header="#{msgs.titPagCadClient}" styleClass="customTitleBar" 
                          style="margin-bottom:50px; width: 800px; height: 690px; display: block; 
                          margin-left: auto;  margin-right: auto; margin-top: 50px; ">
-                   
-                    
-                   
+                                      
                     <h:form >                        
                         <h:panelGrid columns="2" cellpadding="5"> 
                             
@@ -49,21 +47,17 @@
                                   <f:ajax event="blur" render="m_senha"/>
                               </p:password>
                                 <h:message id="m_senha" class="invalid" for="senhaField" style="color:red" />
-                            </h:panelGroup>                       
+                            </h:panelGroup>    
+                            
+                            
+                            <h:outputText class="labelFields" value="Confirme a senha: " />
+                            <p:password id="senhaFieldConfirm"  feedback="true" />
                                
-                            <h:outputText class="labelFields" value="#{msgs.confirmaSenha} " />
-                            <h:panelGroup> 
-                            <p:password id="senhaFieldConfirm"  feedback="true"  size="10"
-                                        required="#{not empty passwordComponent.value}" 
-                                        requiredMessage="#{msgs.notNull}">
-                                <f:validator validatorId="confirmPasswordValidator" />
-                                <f:attribute name="passwordComponent" value="#{passwordComponent}"/>
-                                <f:ajax event="blur" execute="confirmesenha senha" render="m_confirme" />
-                            </p:password>
-                                <h:message id="m_confirme" class="invalid"  for="senhaFieldConfirm" style="color:red"/>  
-                            </h:panelGroup>                   
+                            
+                            
                                                               
                             <h:outputText class="labelFields" value="#{msgs.telefone} "  />
+                            
                             <p:inputText id="telField" size="16" value="#{clienteBean.telefone}" >
                             <p:watermark  for="telField" value="(99)9999-9999"/>
                             <f:validateRegex pattern="\([1-9]{2}\)[2-9][0-9]{3}\-[0-9]{4}"/>
