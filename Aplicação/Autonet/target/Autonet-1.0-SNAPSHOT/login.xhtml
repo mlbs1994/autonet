@@ -23,15 +23,33 @@
                     
                     
                     <h:form >
-                        <h:panelGrid columns="2" cellpadding="5">    
+                        <h:panelGrid columns="2" cellpadding="5">   
+                            
                                 <h:outputText class="labelFields" value="Login: "  />
-                                <p:inputText id="loginField" value="#{loginBean.login}" />
+                                <h:panelGroup> 
+                                <p:inputText id="loginField" value="#{loginBean.login}" size="10"
+                                             required="true" requiredMessage="#{msgs.notNull}">
+                                <f:ajax event="blur" render="m_login" />
+                                </p:inputText>
+                                    <h:message id="m_login" class="invalid" for="loginField" style="color:red" />
+                                </h:panelGroup>
                                 
                                 <h:outputText class="labelFields" value="#{msgs.loginSenha}: " />
-                                <p:password id="feedback" value="#{loginBean.senha}" feedback="true" />
+                                <h:panelGroup>
+                                <p:password id="feedback" value="#{loginBean.senha}" feedback="true" size="10"
+                                            required="true" requiredMessage="#{msgs.notNull}">
+                                    <f:ajax event="blur" render="m_feedback"/>
+                                </p:password>
+                                    <h:message id="m_feedback" class="invalid" for="feedback" style="color:red" />
+                                </h:panelGroup>
+                                
+                                <h:outputText/>
                                 <p:commandButton value="#{msgs.loginBtEntrar}" action="#{loginBean.autenticarUsuario('C')}"  />
                                 <h:link outcome="cadastroCliente.xhtml">#{msgs.loginCriaCc}</h:link>
                         </h:panelGrid>
+                    
+                    
+                    
                     </h:form>    
                 </p:panel>    
             </ui:define>

@@ -23,7 +23,7 @@
                             
                             <h:outputText class="labelFields" value="#{msgs.nome}" />
                             <h:panelGroup> 
-                               <p:inputText id="nomeField" size="45" value="#{clienteBean.nome}" required="true" requiredMessage="#{msgs.nomeNotNull}" 
+                               <p:inputText id="nomeField" size="48" value="#{clienteBean.nome}" required="true" requiredMessage="#{msgs.nomeNotNull}" 
                                          converter="upperCaseConverter">
                                   <f:ajax event="blur" render="m_nome" />
                                </p:inputText>
@@ -33,25 +33,36 @@
                             
                             <h:outputText class="labelFields"  value="Login: " />
                             <h:panelGroup>
-                            <p:inputText id="loginField" size="30" value="#{clienteBean.login}" required="true" requiredMessage="#{msgs.loginNotNull}">
+                            <p:inputText id="loginField" size="35" value="#{clienteBean.login}" required="true" requiredMessage="#{msgs.loginNotNull}">
                                    <f:ajax event="blur" render="m_login" />
                             </p:inputText>
                             <h:message id="m_login" for="loginField"   style="color:red"/>
-                            </h:panelGroup>
-                            
+                            </h:panelGroup>                            
                             
                             
                             <h:outputText class="labelFields" value="#{msgs.senha} " />
                             <h:panelGroup>
-                              <p:password id="senhaField" value="#{clienteBean.senha}" feedback="true" required="true" />
-                            <h:message id="m_senha" for="senhaField"   style="color:red"/>
+                                <p:password id="senhaField" value="#{clienteBean.senha}"  size="10" feedback="true" required="true" 
+                                          validatorMessage="#{msgs.valSenha}" requiredMessage="#{msgs.valSenhaNotNull}"
+                                          binding="#{passwordComponent}">
+                                  <f:validateLength minimum="3" maximum="10"/>
+                                  <f:ajax event="blur" render="m_senha"/>
+                              </p:password>
+                                <h:message id="m_senha" class="invalid" for="senhaField" style="color:red" />
                             </h:panelGroup>                       
                                
                             <h:outputText class="labelFields" value="#{msgs.confirmaSenha} " />
-                            <p:password id="senhaFieldConfirm"  feedback="true" />
-                             
-                            
-                            
+                            <h:panelGroup> 
+                            <p:password id="senhaFieldConfirm"  feedback="true"  size="10"
+                                        required="#{not empty passwordComponent.value}" 
+                                        requiredMessage="#{msgs.notNull}">
+                                <f:validator validatorId="confirmPasswordValidator" />
+                                <f:attribute name="passwordComponent" value="#{passwordComponent}"/>
+                                <f:ajax event="blur" execute="confirmesenha senha" render="m_confirme" />
+                            </p:password>
+                                <h:message id="m_confirme" class="invalid"  for="senhaFieldConfirm" style="color:red"/>  
+                            </h:panelGroup>                   
+                                                              
                             <h:outputText class="labelFields" value="#{msgs.telefone} "  />
                             <p:inputText id="telField" size="16" value="#{clienteBean.telefone}" >
                             <p:watermark  for="telField" value="(99)9999-9999"/>
