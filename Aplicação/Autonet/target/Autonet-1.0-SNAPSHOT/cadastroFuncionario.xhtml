@@ -15,42 +15,78 @@
                 <p:panel id="basic" header="Cadastro - Funcionário" styleClass="customTitleBar" 
                          style="margin-bottom:50px; width: 800px; height: 560px; display: block; 
                          margin-left: auto;  margin-right: auto; margin-top: 50px; ">
+                    
                     <h:form >
                         <h:panelGrid columns="2" cellpadding="5"> 
-                            <h:outputText class="labelFields" value="Nome: " />
-                            <p:inputText id="nomeField" size="60" value="#{funcBean.nome}"/>
                             
-                            <h:outputText class="labelFields" value="Login: " />
-                            <p:inputText id="loginField" value="#{funcBean.login}" />
+                       <h:outputText class="labelFields" value="#{msgs.nome}" />
+                            <h:panelGroup> 
+                               <p:inputText id="nomeField" size="65" value="#{funcBean.nome}" 
+                                            required="true" requiredMessage="#{msgs.nomeNotNull}" 
+                                         converter="upperCaseConverter">
+                                  <f:ajax event="blur" render="m_nome" />
+                               </p:inputText>
+                            <h:message id="m_nome" for="nomeField"   style="color:red"/>
+                            </h:panelGroup>
                             
-                            <h:outputText class="labelFields" value="Senha: " />
-                            <p:password id="senhaField" value="#{funcBean.senha}" feedback="true" />
                             
-                            <h:outputText class="labelFields" value="Confirme a senha: " />
-                            <p:password id="senhaFieldConfirm"  feedback="true" />
+                            <h:outputText class="labelFields"  value="Login: " />
+                            <h:panelGroup>
+                            <p:inputText id="loginField" size="65" value="#{funcBean.login}" 
+                                         required="true" requiredMessage="#{msgs.loginNotNull}" >
+                                   <f:ajax event="blur" render="m_login" />
+                            </p:inputText>
+                            <h:message id="m_login" for="loginField"   style="color:red"/>
+                            </h:panelGroup>                            
                             
-                            <h:outputText class="labelFields" value="Telefone: " />
-                            <p:inputText id="telField" size="16" value="#{funcBean.telefone}" />
+                            <h:outputText class="labelFields" value="#{msgs.senha} " />
+                            <h:panelGroup>
+                                <p:password id="senhaField" value="#{funcBean.senha}"  size="10" feedback="true" required="true" 
+                                          validatorMessage="#{msgs.valSenha}" requiredMessage="#{msgs.valSenhaNotNull}"
+                                          binding="#{passwordComponent}">
+                                  <f:validateLength minimum="3" maximum="10"/>
+                                  <f:ajax event="blur" render="m_senha"/>
+                              </p:password>
+                                <h:message id="m_senha" class="invalid" for="senhaField" style="color:red" />
+                            </h:panelGroup>    
+                                                        
+                            <h:outputText class="labelFields" value="#{msgs.confirmaSenha} " />
+                            <h:panelGroup> 
+                                <p:password id="senhaFieldConfirm" size="10"  feedback="true" required="true" requiredMessage="#{msgs.valSenhaNotNull}">
+                                <f:ajax event="blur" render="mC_senha"/>
+                              </p:password>
+                                <h:message id="mC_senha" class="invalid" for="senhaFieldConfirm" style="color:red" />  
+                            </h:panelGroup> 
                             
-                            <h:outputText class="labelFields" value="Celular: " />
-                            <p:inputText id="celField" size="16" value="#{funcBean.celular}"/>
                             
-                            <h:outputText class="labelFields" value="Logradouro: " />
+                            <h:outputText class="labelFields" value="#{msgs.telefone} "  />
+                            <p:inputText id="telField" size="16" value="#{funcBean.telefone}" >
+                            <p:watermark  for="telField" value="(99)9999-9999"/>
+                            <f:validateRegex pattern="\([1-9]{2}\)[2-9][0-9]{3}\-[0-9]{4}"/>
+                            </p:inputText>
+                            
+                            <h:outputText class="labelFields" value="#{msgs.celular} " />
+                            <p:inputText id="celField" size="16" value="#{funcBean.celular}" >
+                            <p:watermark  for="celField" value="(99)99999-9999"/>
+                            <f:validateRegex pattern="\([1-9]{2}\)[2-9][0-9]{3,4}\-[0-9]{4}"/>
+                            </p:inputText>
+                            
+                            <h:outputText class="labelFields" value="#{msgs.logradouro} " />
                             <p:inputText id="logField" size="60" value="#{funcBean.logradouro}"/>
                             
-                            <h:outputText class="labelFields" value="Número: " />
+                            <h:outputText class="labelFields" value="#{msgs.numero} " />
                             <p:inputText id="numField" size="10" value="#{funcBean.numero}"/>
                             
-                            <h:outputText class="labelFields" value="Complemento: " />
+                            <h:outputText class="labelFields" value="#{msgs.complemento} " />
                             <p:inputText id="compField" size="15" value="#{funcBean.complemento}"/>
                             
-                            <h:outputText class="labelFields" value="Bairro: " />
+                            <h:outputText class="labelFields" value="#{msgs.bairro} " />
                             <p:inputText id="bairroField" size="30" value="#{funcBean.bairro}" />
                             
-                            <h:outputText class="labelFields" value="Cidade: " />
+                            <h:outputText class="labelFields" value="#{msgs.cidade} " />
                             <p:inputText id="cidadeField" value="#{funcBean.cidade}"/>
                             
-                            <h:outputText class="labelFields" value="Estado: " />
+                            <h:outputText class="labelFields" value="#{msgs.estado} " />
                             <p:selectOneMenu id="estadoField" value="#{funcBean.estado}" style="width:85px">
                                 <f:selectItem itemLabel="AC" itemValue="Acre" />
                                 <f:selectItem itemLabel="AL" itemValue="Alagoas" />
@@ -81,16 +117,15 @@
                                 <f:selectItem itemLabel="TO" itemValue="Tocantins" />
                             </p:selectOneMenu>
                                
-                            <p:commandButton value="Cadastrar" id="btn_logar" actionListener="#{funcBean.cadastrarFuncionario()}" ajax="false" style="width: 100px; height: 30px; background-color: red; color:#fff"/>
+                            <p:commandButton value="#{msgs.btCadastrar}" id="btn_logar" actionListener="#{funcBean.cadastrarFuncionario()}" 
+                                             ajax="false" style="width: 100px; height: 30px; background-color: red; color:#fff"/>
                         </h:panelGrid>
                     </h:form>    
                 </p:panel>
                </div>
             </ui:define>
             
-            <ui:define name="rodape">
-                Desenvolvido por Matheus Levi Barouh dos Santos e Saulo Chagas
-            </ui:define>
+            <ui:define name="rodape">   <p> #{msgs.rodape} </p>           </ui:define>
             
         </ui:composition>
 

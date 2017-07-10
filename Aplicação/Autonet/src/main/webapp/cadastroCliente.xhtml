@@ -31,7 +31,7 @@
                             
                             <h:outputText class="labelFields"  value="Login: " />
                             <h:panelGroup>
-                            <p:inputText id="loginField" size="47" value="#{clienteBean.login}" required="true" requiredMessage="#{msgs.loginNotNull}">
+                            <p:inputText id="loginField" size="48" value="#{clienteBean.login}" required="true" requiredMessage="#{msgs.loginNotNull}">
                                    <f:ajax event="blur" render="m_login" />
                             </p:inputText>
                             <h:message id="m_login" for="loginField"   style="color:red"/>
