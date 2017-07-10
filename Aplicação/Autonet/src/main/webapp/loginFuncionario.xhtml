@@ -23,14 +23,28 @@
                     
                     
                     <h:form >
-                        <h:panelGrid columns="2" cellpadding="5">    
-                                <h:outputText class="labelFields" value="Login: " />
-                                <p:inputText id="loginField" value="#{loginBean.login}" required="true"/>
+                        <h:panelGrid columns="2" cellpadding="5">  
+                                                   
+                                <h:outputText class="labelFields" value="Login: "  />
+                                <h:panelGroup> 
+                                <p:inputText id="loginField" value="#{loginBean.login}" size="10"
+                                             required="true" requiredMessage="#{msgs.notNull}">
+                                <f:ajax event="blur" render="m_login" />
+                                </p:inputText>
+                                    <h:message id="m_login" class="invalid" for="loginField" style="color:red" />
+                                </h:panelGroup>                            
+                                                            
+                                <h:outputText class="labelFields" value="#{msgs.loginSenha}: " />
+                                <h:panelGroup>
+                                    <p:password id="feedback" value="#{loginBean.senha}" feedback="true" size="10"
+                                                required="true" requiredMessage="#{msgs.notNull}">
+                                        <f:ajax event="blur" render="m_feedback"/>
+                                    </p:password>
+                                    <h:message id="m_feedback" class="invalid" for="feedback" style="color:red" />
+                                </h:panelGroup>
+                                <p:commandButton value="#{msgs.loginBtEntrar}" action="#{loginBean.autenticarUsuario('F')}"  />
                                 
-                                <h:outputText class="labelFields" value="Senha: " />
-                                <p:password id="feedback" value="#{loginBean.senha}" feedback="true" />
-                                <p:commandButton value="Entrar" action="#{loginBean.autenticarUsuario('F')}"  />
-                                <h:link outcome="cadastroFuncionario.xhtml">Criar uma conta</h:link>
+                                <h:link outcome="cadastroFuncionario.xhtml">#{msgs.loginCriaCc}</h:link>
                         </h:panelGrid>
                     </h:form>    
                 </p:panel>    

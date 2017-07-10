@@ -31,12 +31,11 @@
                             
                             <h:outputText class="labelFields"  value="Login: " />
                             <h:panelGroup>
-                            <p:inputText id="loginField" size="35" value="#{clienteBean.login}" required="true" requiredMessage="#{msgs.loginNotNull}">
+                            <p:inputText id="loginField" size="47" value="#{clienteBean.login}" required="true" requiredMessage="#{msgs.loginNotNull}">
                                    <f:ajax event="blur" render="m_login" />
                             </p:inputText>
                             <h:message id="m_login" for="loginField"   style="color:red"/>
                             </h:panelGroup>                            
-                            
                             
                             <h:outputText class="labelFields" value="#{msgs.senha} " />
                             <h:panelGroup>
@@ -48,26 +47,34 @@
                               </p:password>
                                 <h:message id="m_senha" class="invalid" for="senhaField" style="color:red" />
                             </h:panelGroup>    
-                            
-                            
-                            <h:outputText class="labelFields" value="Confirme a senha: " />
-                            <p:password id="senhaFieldConfirm"  feedback="true" />
-                               
-                            
-                            
+                                                        
+                            <h:outputText class="labelFields" value="#{msgs.confirmaSenha} " />
+                            <h:panelGroup> 
+                                <p:password id="senhaFieldConfirm" size="10"  feedback="true" required="true" requiredMessage="#{msgs.valSenhaNotNull}">
+                                <f:ajax event="blur" render="mC_senha"/>
+                              </p:password>
+                                <h:message id="mC_senha" class="invalid" for="senhaFieldConfirm" style="color:red" />  
+                            </h:panelGroup>                             
                                                               
                             <h:outputText class="labelFields" value="#{msgs.telefone} "  />
-                            
-                            <p:inputText id="telField" size="16" value="#{clienteBean.telefone}" >
+                            <h:panelGroup>
+                                <p:inputText id="telField" size="16" value="#{clienteBean.telefone}" required="true" requiredMessage="#{msgs.notNull}" >
                             <p:watermark  for="telField" value="(99)9999-9999"/>
-                            <f:validateRegex pattern="\([1-9]{2}\)[2-9][0-9]{3}\-[0-9]{4}"/>
+                                <f:validateRegex pattern="\([1-9]{2}\)[2-9][0-9]{3}\-[0-9]{4}"/>
+                                <f:ajax event="blur" render="m_telField" />
                             </p:inputText>
+                                <h:message id="m_telField" class="invalid" for="telField" style="color:red" />  
+                            </h:panelGroup> 
                             
                             <h:outputText class="labelFields" value="#{msgs.celular} " />
-                            <p:inputText id="celField" size="16" value="#{clienteBean.celular}" >
+                            <h:panelGroup>
+                            <p:inputText id="celField" size="16" value="#{clienteBean.celular}" required="true" requiredMessage="#{msgs.notNull}" >
                             <p:watermark  for="celField" value="(99)99999-9999"/>
                             <f:validateRegex pattern="\([1-9]{2}\)[2-9][0-9]{3,4}\-[0-9]{4}"/>
+                            <f:ajax event="blur" render="m_celField" />
                             </p:inputText>
+                                <h:message id="m_celField" class="invalid" for="celField" style="color:red" />  
+                            </h:panelGroup> 
                             
                             <h:outputText class="labelFields" value="#{msgs.logradouro} " />
                             <p:inputText id="logField" size="40" value="#{clienteBean.logradouro}"/>
@@ -121,14 +128,26 @@
                                 <f:selectItems value="#{bandeiraBean.bandeiras}" var="bandeira" itemLabel="#{bandeira.nome}" itemValue="#{bandeira.idBandeira}" />;  
                             </p:selectOneMenu> 
                             
-                            <h:outputText class="labelFields" value="#{msgs.numero_cartao} " />    
-                            <p:inputText id="numeroCartaoField" value="#{clienteBean.numeroCartao}" required="true" requiredMessage="#{msgs.notNull}"/>
-                                                         
+                            <h:outputText class="labelFields" value="#{msgs.numero_cartao} " /> 
+                            <h:panelGroup>
+                            <p:inputText id="numeroCartaoField" value="#{clienteBean.numeroCartao}" required="true" 
+                                         requiredMessage="#{msgs.notNull}" validatorMessage="#{msgs.valNumCart}">
+                                <f:validateLength minimum="16" maximum="16"/>     
+                                <f:ajax event="blur" render="m_numeroCartao"/>   
+                            </p:inputText>
+                                <h:message id="m_numeroCartao" class="invalid" for="numeroCartaoField" style="color:red" />
+                            </h:panelGroup> 
                             
                             <h:outputText class="labelFields" value="#{msgs.codSeg} " />
-                            <p:inputText id="codSegField" value="#{clienteBean.codigoSeguranca}"  required="true" requiredMessage="#{msgs.notNull}"/>
-                            
-                             
+                            <h:panelGroup>
+                            <p:inputText id="codSegField" value="#{clienteBean.codigoSeguranca}"  required="true"              
+                                          requiredMessage="#{msgs.notNull}" validatorMessage="#{msgs.valCodSeg}" >                                    
+                                  <f:validateLength minimum="3" maximum="4"/>
+                                  <f:ajax event="blur" render="m_codSegField"/>
+                            </p:inputText>
+                                <h:message id="m_codSegField" class="invalid" for="codSegField" style="color:red" />
+                            </h:panelGroup>                        
+                                                          
                             <p:commandButton value="#{msgs.btCadastrar}" id="btn_logar" actionListener="#{clienteBean.cadastrarCliente()}" ajax="false" style="width: 100px; height: 30px; background-color: red; color:#fff"/>
                                                     
                         </h:panelGrid>

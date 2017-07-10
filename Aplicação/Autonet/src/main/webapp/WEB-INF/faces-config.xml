@@ -23,6 +23,10 @@
         <managed-bean-name>carroBean</managed-bean-name>
         <managed-bean-class>beans.CarroBean</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>carrosAlugadosBean</property-name>
+            <value>#{loginBean}</value>
+        </managed-property>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>categoriaBean</managed-bean-name>
@@ -62,7 +66,7 @@
     <managed-bean>
         <managed-bean-name>fabricanteBean</managed-bean-name>
         <managed-bean-class>beans.FabricanteBean</managed-bean-class>
-        <managed-bean-scope>view</managed-bean-scope>
+        <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>aluguelBean</managed-bean-name>
@@ -75,6 +79,19 @@
         <managed-property>
             <property-name>uBean</property-name>
             <value>#{loginBean}</value>
+        </managed-property>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>calculadoraAluguelBean</managed-bean-name>
+        <managed-bean-class>beans.CalculadoraAluguelBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+        <managed-property>
+            <property-name>aBean</property-name>
+            <value>#{aluguelBean}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>carBean</property-name>
+            <value>#{carroBean}</value>
         </managed-property>
     </managed-bean>
 </faces-config>

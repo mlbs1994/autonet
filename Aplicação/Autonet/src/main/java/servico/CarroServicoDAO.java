@@ -123,5 +123,21 @@ public class CarroServicoDAO implements CarroDAO
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public List<Carro> getListaCarrosStatus(String status) {
+      Query q = this.em.createQuery("SELECT c FROM Carro c WHERE c.status = :status");
+      q.setParameter("status", status);
+
+      return q.getResultList();
+    }
+
+    @Override
+    public List<Carro> getListaCarrosPalavraChave(String palavraChave) {
+      Query q = this.em.createQuery("SELECT c FROM Carro c WHERE c.modelo LIKE :palavraChave");
+      q.setParameter("palavraChave", palavraChave);
+
+      return q.getResultList();
+    }
+
     
 }

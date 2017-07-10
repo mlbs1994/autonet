@@ -26,9 +26,13 @@ public interface CarroDAO
     
     public List<Carro> getListaCarros();
     
+    public List<Carro> getListaCarrosStatus(String status);
+    
     public List<Carro> getListaCarrosCategoria(Categoria ctg);
     
     public List<Carro> getListaCarrosFabricante(Fabricante f);
+    
+    public List<Carro> getListaCarrosPalavraChave(String palavraChave);
     
     public void commitTransacao();
     

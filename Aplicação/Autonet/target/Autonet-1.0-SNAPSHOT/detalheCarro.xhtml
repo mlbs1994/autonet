@@ -12,27 +12,50 @@
         <ui:composition template="./template/templateAutonet.xhtml">
             
              <ui:define name="menuLateral">
-                 <h1 id="categoria_menu_h1">CATEGORIAS</h1>
+                 <h1 class="tituloMenu" id="categoria_menu_h1" style="text-align: left;">CARROS</h1>
+                    <h:form id="carrosMenu">
+                        <ul>
+                            <li>
+                                <h:commandLink value="Disponíveis" action="#{carroBean.voltarHome(-1)}" />
+                            </li>
+                            <li>
+                                <h:commandLink value="Alugados" action="#{carroBean.voltarHome(-2)}" />
+                            </li>
+                        </ul>
+                    </h:form>
+                    <h1 class="tituloMenu" id="categoria_menu_h1" style="text-align: left;">CATEGORIAS</h1>
                     <h:form id="formu">
                     <ul>
-                        <li><h:commandLink value="Todos" action="home.xhtml">                    
-                            </h:commandLink>
+                        <li>
+                            <h:commandLink value="Todos" action="#{carroBean.voltarHome(0)}" />
                         </li>
                             <ui:repeat value="#{ctgBean.categorias}" var="categoria">
                                 <li>
-                                    <h:commandLink value="#{categoria.nome}" action="home.xhtml">
+                                    <h:commandLink value="#{categoria.nome}" action="#{carroBean.voltarHome(categoria.idCategoria)}" />
+                                </li>
+                            </ui:repeat> 
+                    </ul> 
+                    </h:form>
+                    <h1 class="tituloMenu" id="categoria_menu_fabricantes" style="text-align: left;">FABRICANTES</h1>
+                    <h:form id="formu2">
+                    <ul>
+                        <ui:repeat value="#{fabricanteBean.listaFabricantes}" var="fabricante">
+                                <li>
+                                    <h:commandLink value="#{fabricante.nome}">
+                                        <f:ajax event="click" execute="@all" render="formCarros:listaCarros" listener="#{carroBean.setFabricanteSelecionado(fabricante.idFabricante)}"/>
                                     </h:commandLink>
                                 </li>
                             </ui:repeat> 
                     </ul> 
-                </h:form>   
+                    </h:form>
             </ui:define>
             
             <ui:define name="conteudo">
                 
                 <div style="height: 100px; padding:0px; background-color: #550000; text-align: center;
                      font-size: 30pt; font-weight: bold; font-family: Tahoma; color:#fff; padding-top: 20px;">
-                       #{carroBean.carro.idFabricante.nome} #{carroBean.carro.modelo} 
+                    <span><img src='/Autonet/faces/javax.faces.resource/imagensFabricantes/#{carroBean.carro.idFabricante.imgFabricante}'
+                             style='height: 60px; width: 100px; ; position: relative; top: 15%;' /></span> #{carroBean.carro.idFabricante.nome} #{carroBean.carro.modelo} 
                        
                       
                 </div>
@@ -42,8 +65,11 @@
                         <div style="height: 1371px;">
                             <h:panelGrid columns="2" cellpadding="10">
                                 <p:graphicImage style="display: block; margin-left: auto;  margin-right: auto;
-                                                height: 350px; width: 500px;" name="#{carroBean.carro.imagem}" />
+                                               margin-top: 0px; height: 350px; width: 500px;" name="#{carroBean.carro.imagem}" />
                                 <p:outputPanel>
+                                   
+                                    <h:outputText></h:outputText>
+                                    
                                     <h:panelGrid columns="2" cellpadding="3">
                                         <h:outputText value="Fabricante:" />
                                         <h:outputText value="#{carroBean.carro.idFabricante.nome}" style="font-weight: bold"/>
@@ -62,50 +88,57 @@
                                     </h:panelGrid>
                                 </p:outputPanel>
                                 
-                                <h:form id="formCalendario">
-                                    
-                                    <h:panelGrid columns="2"> 
-
-                                    <h:outputText style="width: 100px;" class="labelFields" value="Data do aluguel: " />
-                                    <p:calendar id="dataAluguelField" value="#{aluguelBean.dataAluguel}"  pattern="dd/MM/yyyy"/>
-
-                                    <h:outputText class="labelFields" value="Prazo de entrega: " />
-                                    <p:calendar id="dataEntregaField" value="#{aluguelBean.dataDevolucao}" pattern="dd/MM/yyyy">
-                                        <p:ajax event="dateSelect" listener="#{aluguelBean.calcularTotal()}" update="valorTotal" />
-                                    </p:calendar>
-                                                                     
-                                    
-                                    <h:outputText class="labelFields" value="Valor Diaria: "/> 
-                                    <h:outputText  value="#{carroBean.carro.valorAluguelDiaria}"/>
-                                                                         
-                                    <h:outputText class="labelFields" value="Valor Total: "/>
-                                    <h:outputText  id="valorTotal" value="#{aluguelBean.totalAluguel}"/>
-                                    
-                                    
-                                    
-                                </h:panelGrid>
-                                    
-                                </h:form>
-                                <h:outputText></h:outputText>
+                                <p:galleria value="#{carroBean.imagensCarroSelecionado}" var="imagem" panelWidth="500" panelHeight="300" showCaption="true">
+                                        <p:graphicImage name="imagensCarros/#{imagem.img}" alt="Fotos" title="#{carroBean.modelo}" style='width: 500px; height: 313px;'/>
+                                    </p:galleria>
                                 
-                                <h:commandLink action="#{aluguelBean.fazerAluguel()}">
-                                    <div id="btnAlugarDetalheCarro" style="height: 80px; width: 100%; background-color: #000044; 
-                                         color: #fff;  text-align: center; font-size: 30pt; 
-                                         font-weight: bold; font-family: Tahoma; color:#fff;
-                                         padding-top: 20px;" >
-                                        ALUGAR
-                                    </div>
-                                </h:commandLink>   
-                               
-                                <br/>
-                                <h:link outcome="home.xhtml" id="linkVoltar">
+                                <div></div>
+                                
+                                <c:if test="#{carroBean.carro.status != 'Alugado'}">
+                                        <h:form id="formCalendario">
+
+                                            <h:panelGrid columns="2"> 
+
+                                            <h:outputText style="width: 100px;" class="labelFields" value="Data do aluguel: " />
+                                            <p:calendar id="dataAluguelCampo" value="#{aluguelBean.dataAluguel}" pattern="dd/MM/yyyy">
+                                                <p:ajax event="dateSelect" listener="#{calculadoraAluguelBean.calcularTotalAluguel()}" update="valorTotal" />
+                                            </p:calendar>
+
+                                            <h:outputText class="labelFields" value="Prazo de entrega: " />
+                                            <p:calendar id="dataDevolucaoCampo" value="#{aluguelBean.dataDevolucao}" pattern="dd/MM/yyyy">
+                                                <p:ajax event="dateSelect" listener="#{calculadoraAluguelBean.calcularTotalAluguel()}" update="valorTotal" />
+                                            </p:calendar>                    
+
+                                            <h:outputText class="labelFields" value="Valor Diaria: "/> 
+                                            <h:outputText  value="#{carroBean.carro.valorAluguelDiaria}"/>
+
+                                            <h:outputText class="labelFields" value="Valor Total: "/>
+                                            <h:outputText  id="valorTotal" value="#{aluguelBean.totalAluguel}"/>
+
+                                        </h:panelGrid>
+
+                                    </h:form>
+                                    <h:outputText></h:outputText>
+                                    
+                                    <h:commandLink action="#{aluguelBean.fazerAluguel()}">
+                                        <div id="btnAlugarDetalheCarro" style="height: 80px; width: 100%; background-color: #000044; 
+                                                color: #fff;  text-align: center; font-size: 30pt; 
+                                                font-weight: bold; font-family: Tahoma; color:#fff;
+                                                 padding-top: 20px;" >
+                                            ALUGAR
+                                        </div>
+                                    </h:commandLink>   
+                                    <br/>
+                                </c:if>
+                   
+                                <h:commandLink action="#{aluguelBean.voltar()}" id="linkVoltar">
                                 <div id="btnVoltarDetalheCarro" style="height: 80px; width: 100%; background-color: #440000; 
                                      color: #fff;  text-align: center; font-size: 30pt; 
                                      font-weight: bold; font-family: Tahoma; color:#fff;
                                      padding-top: 20px;" >
                                     VOLTAR
                                 </div>
-                                </h:link>    
+                                </h:commandLink>    
                             </h:panelGrid>
                         </div>
                     </p:panel>    

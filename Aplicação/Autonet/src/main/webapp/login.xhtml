@@ -23,9 +23,8 @@
                     
                     
                     <h:form >
-                        <h:panelGrid columns="2" cellpadding="5">   
-                            
-                                <h:outputText class="labelFields" value="Login: "  />
+                        <h:panelGrid columns="2" cellpadding="5">    
+                                 <h:outputText class="labelFields" value="Login: "  />
                                 <h:panelGroup> 
                                 <p:inputText id="loginField" value="#{loginBean.login}" size="10"
                                              required="true" requiredMessage="#{msgs.notNull}">
@@ -48,9 +47,6 @@
                              
                                 <h:link outcome="cadastroCliente.xhtml">#{msgs.loginCriaCc}</h:link>
                         </h:panelGrid>
-                    
-                    
-                    
                     </h:form>    
                 </p:panel>    
             </ui:define>

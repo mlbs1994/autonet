@@ -10,6 +10,48 @@
 
         <ui:composition template="./template/templateAutonet.xhtml">
 
+            <ui:define name="menuLateral">
+                 <h1 class="tituloMenu" id="categoria_menu_h1" style="text-align: left;">CARROS</h1>
+                    <h:form id="carrosMenu">
+                        <ul>
+                            <li>
+                                <h:commandLink value="Disponíveis" action="#{carroBean.voltarHome(-1)}">
+                                </h:commandLink>
+                            </li>
+                            <li>
+                                <h:commandLink value="Alugados" action="#{carroBean.voltarHome(-2)}">
+                                </h:commandLink>
+                            </li>
+                        </ul>
+                    </h:form>
+                    <h1 class="tituloMenu" id="categoria_menu_h1" style="text-align: left;">CATEGORIAS</h1>
+                    <h:form id="formu">
+                    <ul>
+                        <li>
+                            <h:commandLink value="Todos" action="#{carroBean.voltarHome(0)}" />
+                        </li>
+                        <ui:repeat value="#{ctgBean.categorias}" var="categoria">
+                            <li>
+                                <h:commandLink value="#{categoria.nome}" action="#{carroBean.voltarHome(categoria.idCategoria)}">
+                                </h:commandLink>
+                            </li>
+                        </ui:repeat> 
+                    </ul> 
+                    </h:form>
+                    <h1 class="tituloMenu" id="categoria_menu_fabricantes" style="text-align: left;">FABRICANTES</h1>
+                    <h:form id="formu2">
+                    <ul>
+                        <ui:repeat value="#{fabricanteBean.listaFabricantes}" var="fabricante">
+                                <li>
+                                    <h:commandLink value="#{fabricante.nome}">
+                                        <f:ajax event="click" execute="@all" render="formCarros:listaCarros" listener="#{carroBean.setFabricanteSelecionado(fabricante.idFabricante)}"/>
+                                    </h:commandLink>
+                                </li>
+                            </ui:repeat> 
+                    </ul> 
+                    </h:form>
+            </ui:define>
+            
             <ui:define name="conteudo">
                 <div style="height: 100px; padding:0px; background-color: #550000; text-align: center;
                      font-size: 30pt; font-weight: bold; font-family: Tahoma; color:#fff; padding-top: 20px;">

@@ -40,6 +40,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Carro.findByDescricao", query = "SELECT c FROM Carro c WHERE c.descricao = :descricao"),
     @NamedQuery(name = "Carro.findByValorAluguelDiaria", query = "SELECT c FROM Carro c WHERE c.valorAluguelDiaria = :valorAluguelDiaria")})
 public class Carro implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCarro")
+    private List<Imagem> imagemList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,7 +59,11 @@ public class Carro implements Serializable {
     @Size(min = 1, max = 60)
     @Column(name = "cor")
     private String cor;
-
+    @Size(min = 1, max = 60)
+    @Column(name = "status")
+    private String status;
+    
+    
     public String getAno() {
         return ano;
     }
@@ -158,6 +164,14 @@ public class Carro implements Serializable {
     public void setIdFabricante(Fabricante idFabricante) {
         this.idFabricante = idFabricante;
     }
+    
+     public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     @XmlTransient
     public List<Aluguel> getAluguelList() {
@@ -191,6 +205,15 @@ public class Carro implements Serializable {
     @Override
     public String toString() {
         return "modelo.Carro[ idCarro=" + idCarro + " ]";
+    }
+
+    @XmlTransient
+    public List<Imagem> getImagemList() {
+        return imagemList;
+    }
+
+    public void setImagemList(List<Imagem> imagemList) {
+        this.imagemList = imagemList;
     }
     
 }
