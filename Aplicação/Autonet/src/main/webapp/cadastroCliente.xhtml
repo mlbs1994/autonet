@@ -149,6 +149,8 @@
                             </h:panelGroup>                        
                                                           
                             <p:commandButton value="#{msgs.btCadastrar}" id="btn_logar" actionListener="#{clienteBean.cadastrarCliente()}" ajax="false" style="width: 100px; height: 30px; background-color: red; color:#fff"/>
+                            
+                            <h:link outcome="login.xhtml" value="#{msgs.voltar}"></h:link>
                                                     
                         </h:panelGrid>
                     </h:form>    
