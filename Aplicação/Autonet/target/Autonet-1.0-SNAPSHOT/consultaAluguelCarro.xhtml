@@ -15,7 +15,7 @@
                 <h:form id="formCarros"> 
                     <p:dataScroller id="listaCarros" value="#{loginBean.carrosAlugados}" var="carro" chunkSize="10">
                         <f:facet name="header">
-                            MEUS CARROS ALUGADOS
+                            <p>#{msgs.meusCarrosAlugador}</p>
                         </f:facet>
 
                         <h:panelGrid columns="2" style="width:60%" columnClasses="">
@@ -23,19 +23,19 @@
 
                             <p:outputPanel>
                                 <h:panelGrid columns="2" cellpadding="3">
-                                    <h:outputText value="Fabricante:" />
+                                    <h:outputText value="#{msgs.fabricante}" />
                                     <h:outputText value="#{carro.idFabricante.nome}" style="font-weight: bold"/>
                                     
-                                    <h:outputText value="Modelo:" />
+                                    <h:outputText value="#{msgs.modelo}" />
                                     <h:outputText value="#{carro.modelo}" style="font-weight: bold"/>
 
-                                    <h:outputText value="Ano:" />
+                                    <h:outputText value="#{msgs.ano}:" />
                                     <h:outputText value="#{carro.ano}" style="font-weight: bold"/>
 
-                                    <h:outputText value="Cor:" />
+                                    <h:outputText value="#{msgs.cor}" />
                                     <h:outputText value="#{carro.cor}" style="font-weight: bold"/>
                                     
-                                    <p:commandButton value="Detalhes" id="btn_logar" action="#{carroBean.selecionarCarro(carro.idCarro)}" ajax="false" />
+                                    <p:commandButton value="#{msgs.detalhes}" id="btn_logar" action="#{carroBean.selecionarCarro(carro.idCarro)}" ajax="false" />
                                     
                                 </h:panelGrid>
                                 

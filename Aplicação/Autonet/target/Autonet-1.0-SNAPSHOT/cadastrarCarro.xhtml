@@ -15,56 +15,56 @@
         <ui:composition template="./templates/templateAutonet.xhtml">
 
             <ui:define name="menuLateral">
-                    <h1 id="categoria_menu_h1">CATEGORIAS</h1>
+                <h1 id="categoria_menu_h1">#{msgs.menuTemplatCateg}</h1>
                     <ul>
-                        <li><h:link value="Carros" outcome="cadastrarCarro.xhtml"></h:link></li>
-                        <li><h:link value="Fabricantes" outcome="cadastrarCarro.xhtml"></h:link></li>
+                        <li><h:link value="#{msgs.carros}" outcome="cadastrarCarro.xhtml"></h:link></li>
+                        <li><h:link value="#{msgs.fabricantesF}" outcome="cadastrarCarro.xhtml"></h:link></li>
                     </ul>    
             </ui:define>
 
             <ui:define name="conteudo">
                 <div style="height: 100px; padding:0px; background-color: #550000; text-align: center;
                      font-size: 30pt; font-weight: bold; font-family: Tahoma; color:#fff; padding-top: 20px;">
-                       CADASTRAR CARRO
+                        #{msgs.cadastraCarro}
                 </div>
                 <h:form style="padding: 0px;">
                     <p:panel id="basic" styleClass="customTitleBar" 
                          style=" display: block; margin-left: auto;  margin-right: auto; padding: 0px; ">
                         <h:panelGrid columns="2"> 
 
-                            <h:outputText class="labelFields" value="Categoria: " />
+                            <h:outputText class="labelFields" value="#{msgs.categoria} " />
                             <p:selectOneMenu id="categoriaField" value="#{carroBean.categoria}">
-                                <f:selectItem itemLabel="Selecione a categoria do veículo" itemValue="" />;
+                                <f:selectItem itemLabel="#{msgs.msBarraRlCategoria}" itemValue="" />;
                                 <f:selectItems value="#{ctgBean.categorias}" var="categoria" itemLabel="#{categoria.nome}" itemValue="#{categoria.idCategoria}" />;  
                             </p:selectOneMenu>
                             
-                            <h:outputText class="labelFields" value="Fabricante: " />
+                            <h:outputText class="labelFields" value="#{msgs.fabricante} " />
                             <p:selectOneMenu id="fabricanteField" value="#{carroBean.fabricante}">
-                                <f:selectItem itemLabel="Selecione o fabricante do veículo" itemValue="" />;
+                                <f:selectItem itemLabel="#{msgs.msBarrarlFabric}" itemValue="" />;
                                 <f:selectItems value="#{fabricanteBean.listaFabricantes}" var="fabricante" itemLabel="#{fabricante.nome}" itemValue="#{fabricante.idFabricante}" />;  
                             </p:selectOneMenu>
                             
-                            <h:outputText style="width: 100px;" class="labelFields" value="Modelo: " />
+                            <h:outputText style="width: 100px;" class="labelFields" value="#{msgs.modelo}" />
                             <p:inputText id="modeloField" size="40" value="#{carroBean.modelo}"/>
 
-                            <h:outputText class="labelFields" value="Cor: " />
+                            <h:outputText class="labelFields" value="#{msgs.cor} " />
                             <p:inputText id="corField" value="#{carroBean.cor}"/>
 
-                            <h:outputText class="labelFields" value="Ano: " />
+                            <h:outputText class="labelFields" value="#{msgs.ano} " />
                             <p:inputText id="anoField" size="5" value="#{carroBean.ano}"/>
 
-                            <h:outputText class="labelFields" value="Imagem: " />
+                            <h:outputText class="labelFields" value="#{msgs.imagem} " />
                             <h:panelGrid columns="2"> 
                                 <p:fileUpload id="imagemField" fileUploadListener="#{carroBean.uploadAction}" update="messages" 
-                                              label="Selecione uma foto do carro" auto="true" sizeLimit="10000000" 
+                                              label="#{msgs.msSelecFoto}" auto="true" sizeLimit="10000000" 
                                               allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/" mode="advanced" />
                                 <p:growl id="messages" showDetail="true"/>
                             </h:panelGrid>
                             
-                            <h:outputText class="labelFields" value="Descrição: " />
+                            <h:outputText class="labelFields" value="#{msgs.descricao} " />
                             <p:inputTextarea id="descricaoField" rows="6" cols="33" value="#{carroBean.descricao}" />
                             
-                            <h:outputText class="labelFields" value="Valor Aluguel (Diária): " />
+                            <h:outputText class="labelFields" value="#{msgs.vlAluguelDiaria} " />
                             <p:inputText id="valorAluguelField" value="#{carroBean.valorAluguelDiaria}" />
                             
                                 
@@ -73,7 +73,7 @@
                                     color: #fff;  text-align: center; font-size: 30pt; 
                                     font-weight: bold; font-family: Tahoma; color:#fff;
                                     padding-top: 20px; margin-top: 20px; margin-right: 20px;" >
-                                    CADASTRAR 
+                                    <p>#{msgs.cadastrar}</p>
                                 </div>
                             </h:commandLink>    
                             

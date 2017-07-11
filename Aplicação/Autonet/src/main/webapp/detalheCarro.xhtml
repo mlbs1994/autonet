@@ -12,22 +12,22 @@
         <ui:composition template="./template/templateAutonet.xhtml">
             
              <ui:define name="menuLateral">
-                 <h1 class="tituloMenu" id="categoria_menu_h1" style="text-align: left;">CARROS</h1>
+                 <h1 class="tituloMenu" id="categoria_menu_h1" style="text-align: left;">#{msgs.carros}</h1>
                     <h:form id="carrosMenu">
                         <ul>
                             <li>
-                                <h:commandLink value="Disponíveis" action="#{carroBean.voltarHome(-1)}" />
+                                <h:commandLink value="#{msgs.disponiveis}" action="#{carroBean.voltarHome(-1)}" />
                             </li>
                             <li>
-                                <h:commandLink value="Alugados" action="#{carroBean.voltarHome(-2)}" />
+                                <h:commandLink value="#{msgs.alugados}" action="#{carroBean.voltarHome(-2)}" />
                             </li>
                         </ul>
                     </h:form>
-                    <h1 class="tituloMenu" id="categoria_menu_h1" style="text-align: left;">CATEGORIAS</h1>
+                 <h1 class="tituloMenu" id="categoria_menu_h1" style="text-align: left;">#{msgs.menuTemplatCateg}</h1>
                     <h:form id="formu">
                     <ul>
                         <li>
-                            <h:commandLink value="Todos" action="#{carroBean.voltarHome(0)}" />
+                            <h:commandLink value="#{msgs.todos}" action="#{carroBean.voltarHome(0)}" />
                         </li>
                             <ui:repeat value="#{ctgBean.categorias}" var="categoria">
                                 <li>
@@ -36,7 +36,7 @@
                             </ui:repeat> 
                     </ul> 
                     </h:form>
-                    <h1 class="tituloMenu" id="categoria_menu_fabricantes" style="text-align: left;">FABRICANTES</h1>
+                 <h1 class="tituloMenu" id="categoria_menu_fabricantes" style="text-align: left;">#{msgs.fabricantes}</h1>
                     <h:form id="formu2">
                     <ul>
                         <ui:repeat value="#{fabricanteBean.listaFabricantes}" var="fabricante">
@@ -71,19 +71,19 @@
                                     <h:outputText></h:outputText>
                                     
                                     <h:panelGrid columns="2" cellpadding="3">
-                                        <h:outputText value="Fabricante:" />
+                                        <h:outputText value="#{msgs.fabricante}" />
                                         <h:outputText value="#{carroBean.carro.idFabricante.nome}" style="font-weight: bold"/>
 
-                                        <h:outputText value="Modelo:" />
+                                        <h:outputText value="#{msgs.modelo}" />
                                         <h:outputText value="#{carroBean.carro.modelo}" style="font-weight: bold"/>
 
-                                        <h:outputText value="Ano:" />
+                                        <h:outputText value="#{msgs.ano}" />
                                         <h:outputText value="#{carroBean.carro.ano}" style="font-weight: bold"/>
 
-                                        <h:outputText value="Cor:" />
+                                        <h:outputText value="#{msgs.cor}" />
                                         <h:outputText value="#{carroBean.carro.cor}" style="font-weight: bold"/>
                                         
-                                        <h:outputText value="Descrição:" />
+                                        <h:outputText value="#{msgs.descricao}" />
                                         <h:outputText value="#{carroBean.carro.descricao}" style="font-weight: bold"/>
                                     </h:panelGrid>
                                 </p:outputPanel>
@@ -99,20 +99,20 @@
 
                                             <h:panelGrid columns="2"> 
 
-                                            <h:outputText style="width: 100px;" class="labelFields" value="Data do aluguel: " />
+                                                <h:outputText style="width: 100px;" class="labelFields" value="#{msgs.dtAluguel} " />
                                             <p:calendar id="dataAluguelCampo" value="#{aluguelBean.dataAluguel}" pattern="dd/MM/yyyy">
                                                 <p:ajax event="dateSelect" listener="#{calculadoraAluguelBean.calcularTotalAluguel()}" update="valorTotal" />
                                             </p:calendar>
 
-                                            <h:outputText class="labelFields" value="Prazo de entrega: " />
+                                                <h:outputText class="labelFields" value="#{msgs.pzEntrega}" />
                                             <p:calendar id="dataDevolucaoCampo" value="#{aluguelBean.dataDevolucao}" pattern="dd/MM/yyyy">
                                                 <p:ajax event="dateSelect" listener="#{calculadoraAluguelBean.calcularTotalAluguel()}" update="valorTotal" />
                                             </p:calendar>                    
 
-                                            <h:outputText class="labelFields" value="Valor Diaria: "/> 
+                                                <h:outputText class="labelFields" value="#{msgs.vlDiaria} "/> 
                                             <h:outputText  value="#{carroBean.carro.valorAluguelDiaria}"/>
 
-                                            <h:outputText class="labelFields" value="Valor Total: "/>
+                                            <h:outputText class="labelFields" value="#{msgs.vlTotal} "/>
                                             <h:outputText  id="valorTotal" value="#{aluguelBean.totalAluguel}"/>
 
                                         </h:panelGrid>
@@ -125,7 +125,7 @@
                                                 color: #fff;  text-align: center; font-size: 30pt; 
                                                 font-weight: bold; font-family: Tahoma; color:#fff;
                                                  padding-top: 20px;" >
-                                            ALUGAR
+                                            <p> #{msgs.alugar}</p>
                                         </div>
                                     </h:commandLink>   
                                     <br/>
@@ -136,7 +136,7 @@
                                      color: #fff;  text-align: center; font-size: 30pt; 
                                      font-weight: bold; font-family: Tahoma; color:#fff;
                                      padding-top: 20px;" >
-                                    VOLTAR
+                                    <p>#{msgs.voltar}</p>
                                 </div>
                                 </h:commandLink>    
                             </h:panelGrid>

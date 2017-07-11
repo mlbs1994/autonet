@@ -19,7 +19,7 @@
               <h:panelGrid columns="5">
                   <h:outputText id="loginHeader" value="#{msgs.saudacao}  #{loginBean.nome}"></h:outputText>  
                   <h:form>
-                      <h:commandLink action="#{logoutBean.logout()}">Logout</h:commandLink>
+                      <h:commandLink action="#{logoutBean.logout()}">#{msgs.cabecalhoLogout}</h:commandLink>
                   </h:form>    
                   <h:graphicImage id="img_logo" library="imagensTemplate" name="autonet_logo.png" />
                   <h:form  style="width: 400px;">
@@ -39,29 +39,29 @@
         <div>
             <div id="menuLateral">
                 <ui:insert name="menuLateral">
-                    <h1 class="tituloMenu" id="categoria_menu_carros" style="text-align: left;">CARROS</h1>
+                    <h1 class="tituloMenu" id="categoria_menu_carros" style="text-align: left;">#{msgs.carros}</h1>
                     <h:form id="carrosMenu">
                         <ul>
                             <li>
-                                <h:commandLink value="Disponíveis">
+                                <h:commandLink value="#{msgs.disponiveis}">
                                     <f:ajax event="click" execute="@all" render="formCarros:listaCarros" listener="#{carroBean.setCategoriaSelecionada(-1)}"/>
                                 </h:commandLink>
                             </li>
                             <li>
-                                <h:commandLink value="Alugados">
+                                <h:commandLink value="#{msgs.alugados}">
                                     <f:ajax event="click" execute="@all" render="formCarros:listaCarros" listener="#{carroBean.setCategoriaSelecionada(-2)}"/>
                                 </h:commandLink>
                             </li>
                         </ul>
                     </h:form>
-                    <h1 class="tituloMenu" id="categoria_menu_categorias" style="text-align: left;">CATEGORIAS</h1>
+                    <h1 class="tituloMenu" id="categoria_menu_categorias" style="text-align: left;"> <p>#{msgs.menuTemplatCateg}</p></h1>
                     <h:form id="formu">
                     <ul>
-                        <li><h:commandLink value="Todos">
+                        <li><h:commandLink value="#{msgs.todos}">
                                  <f:ajax event="click" execute="@all" render="formCarros:listaCarros" listener="#{carroBean.setCategoriaSelecionada(0)}"/>
                             </h:commandLink>
                         </li>
-                            <ui:repeat value="#{ctgBean.categorias}" var="categoria">
+                        <ui:repeat value="#{ctgBean.categorias}" var="categoria">
                                 <li>
                                     <h:commandLink value="#{categoria.nome}">
                                         <f:ajax event="click" execute="@all" render="formCarros:listaCarros" listener="#{carroBean.setCategoriaSelecionada(categoria.idCategoria)}"/>
@@ -70,7 +70,7 @@
                             </ui:repeat> 
                     </ul> 
                     </h:form>
-                    <h1 class="tituloMenu" id="categoria_menu_fabricantes" style="text-align: left;">FABRICANTES</h1>
+                    <h1 class="tituloMenu" id="categoria_menu_fabricantes" style="text-align: left;">#{msgs.fabricantes}</h1>
                     <h:form id="formu2">
                     <ul>
                         <ui:repeat value="#{fabricanteBean.listaFabricantes}" var="fabricante">

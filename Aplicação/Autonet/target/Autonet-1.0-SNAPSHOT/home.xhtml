@@ -19,11 +19,12 @@
                 <h:form id="formCarros"> 
                     <p:dataScroller styleClass="listaCarros"  id="listaCarros" value="#{carroBean.carros}" var="carro" chunkSize="10">
                         <f:facet  name="header" >
+                            
                                 <h:outputText value="#{msgs.homecarro}" style="position: absolute; left: 50%; "/>  
                                     <h:form id='formSearch'>
                                         <p:inputText value="#{carroBean.keyword}" id="searchCarro" size="40"  style="height: 18px; font-size: 10pt; position: absolute;
                                                      left: 75%; margin-top: 3px;">
-                                            <p:watermark for="searchCarro" value="Buscar carros por palavra chave" id="watermark" />
+                                            <p:watermark for="searchCarro" value="#{msgs.buscaCarro}" id="watermark" />
                                             <p:ajax event="blur" process="@form" listener="#{carroBean.setCategoriaSelecionada(-4)}"  />
                                         </p:inputText>
                                         <p:commandLink>
@@ -52,16 +53,16 @@
                                                       position: absolute; right: 44%; "/>
                                     </h:panelGrid>
                                     
-                                    <h:outputText value="Modelo:" />
+                                    <h:outputText value="#{msgs.modelo}" />
                                     <h:outputText value="#{carro.modelo}" style="font-weight: bold"/>
 
-                                    <h:outputText value="Ano:" />
+                                    <h:outputText value="#{msgs.ano}" />
                                     <h:outputText value="#{carro.ano}" style="font-weight: bold"/>
 
-                                    <h:outputText value="Cor:" />
+                                    <h:outputText value="#{msgs.cor}" />
                                     <h:outputText value="#{carro.cor}" style="font-weight: bold"/>
                                     
-                                    <p:commandButton value="Detalhes" id="btn_logar" action="#{carroBean.selecionarCarro(carro.idCarro)}" ajax="false" />
+                                    <p:commandButton value="#{msgs.btDetalhe}" id="btn_logar" action="#{carroBean.selecionarCarro(carro.idCarro)}" ajax="false" />
                                     
                                      <div class="footer content" style=" height: 18px; width: 110px; padding: 5px; padding-top: 0px; padding-left: 0px;">
                                          <img src='/Autonet/faces/javax.faces.resource/icon-#{carro.status}.png'
