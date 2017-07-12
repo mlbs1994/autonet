@@ -316,6 +316,15 @@ public class CarroBean implements Serializable
         
     }
     
+    public String voltarHomeFabricante(int fabricanteSelecionado)
+    {
+        this.setFabricanteSelecionado(fabricanteSelecionado);
+        this.setCategoriaSelecionada(-3);
+        
+        return "home.xhtml";
+        
+    }
+    
 
     
 }

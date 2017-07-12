@@ -38,14 +38,12 @@
                         </ui:repeat> 
                     </ul> 
                     </h:form>
-                <h1 class="tituloMenu" id="categoria_menu_fabricantes" style="text-align: left;"><p>#{msgs.fabricantes}</p></h1>
+               <h1 class="tituloMenu" id="categoria_menu_fabricantes" style="text-align: left;">#{msgs.fabricantes}</h1>
                     <h:form id="formu2">
                     <ul>
                         <ui:repeat value="#{fabricanteBean.listaFabricantes}" var="fabricante">
                                 <li>
-                                    <h:commandLink value="#{fabricante.nome}">
-                                        <f:ajax event="click" execute="@all" render="formCarros:listaCarros" listener="#{carroBean.setFabricanteSelecionado(fabricante.idFabricante)}"/>
-                                    </h:commandLink>
+                                    <h:commandLink value="#{fabricante.nome}" action="#{carroBean.voltarHomeFabricante(fabricante.idFabricante)}" />
                                 </li>
                             </ui:repeat> 
                     </ul> 
